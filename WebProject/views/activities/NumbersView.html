@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Aprenentatge per Projectes</title>
+        <meta charset="UTF-8">
+        <meta name="title" content="Portal del Modul 3">
+        <link href="../../css/style.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+    <body>
+        <header  class="title">
+            <h2> Aprenentatge per Projectes </h2>
+            <section id="menu">
+                <nav  class="darkstyle">
+                    <div>
+                        <a href="../main.php" class="optmenu"> HOME </a>
+                        <a href="StringsView.html" class="optmenu"> STRINGS</a>
+                        <a href="ArrayAssocView.html" class="optmenu"> ARRAYS_ASSOC </a>
+                    </div>	
+                </nav>
+            </section>
+        </header>
+
+        <aside id="leftside">
+            <div class="darkstyle">
+                <nav>
+                    <br><br><br><br><br><br>				
+                </nav>
+            </div>
+        </aside>
+
+       <aside id="rightside">
+            <div class="darkstyle">
+                <h4>Referencies utils:</h4>
+                <br>
+                <a href="https://www.php.net/manual/es/" class="optmenu"><i>PHP.NET</i></a>  
+                <br><br>
+                <a href="https://www.w3schools.com/php/default.asp" class="optmenu"><i>W3CSCHOOLS</i></a> 
+            </div>
+        </aside>
+
+        <section id="central">
+            <a name="principal"></a>
+            <h4>CALCULS NUMERICS BASICS</h4>
+
+            <article>
+                <a name="calculbasic"></a>
+                <b>ESCULL LA OPERACIO A REALITZAR AMB 2 NUMEROS</b>
+
+                <div id="formulario">             
+                    <form action="../../controllers/activities/BasicOperController.php" method="POST">
+                        <label>Valors Numerics: </label><br><br>
+                        <input type="number" name="valor1" placeholder="introdueix un valor numeric"/><br><br>
+                        <input type="number" name="valor2" placeholder="introdueix un valor numeric"/><br><br>
+
+                        <input list ="operations" placeholder="Selecciona operació" name ="oper" />
+                        <datalist id="operations">
+                            <option label = "+" value ="suma"></option>
+                            <option label = "-" value ="resta"></option>
+                            <option label = "*" value ="multiplicacion"></option>
+                            <option label = "/" value ="division"></option>
+                        </datalist>
+
+                        <input type="submit" value="EXECUTAR" id="enviar"/><br>
+                    </form>
+                </div>
+            </article>
+
+            <article>
+                <a name="operacions"></a>
+                <b>AVERIGUA SI EL VALOR INTRODUIT ES UN VALOR PRIMER</b>
+                <!--COMO YA SABEIS GET ENVIARIA LOS PARAMETROS DE FORMA VISIBLE POR LA URL Y POST NO-->
+                <div id="formulario">             
+                    <form action="../../controllers/activities/PrimeController.php" method="POST">
+                        <label>Valor Numeric a comprovar: </label><br><br>
+                        <input type="number" name="num"/><br><br>
+                        Mostrar la llista de divisors                       
+                        <input type="radio" name="viewdivisors"/><br>
+                        <input type="submit" value="COMPROVAR" id="enviar"/><br><br>
+                    </form>
+                </div>
+            </article>	
+            
+            <article>
+                <a name="operacions"></a>
+                <b>AVERIGUA SI EL VALOR INTRODUIT ES UN VALOR PERFECTE</b>
+                <!--COMO YA SABEIS GET ENVIARIA LOS PARAMETROS DE FORMA VISIBLE POR LA URL Y POST NO-->
+                <div id="formulario">             
+                    <form action="../../controllers/activities/PerfectController.php" method="POST">
+                        <label>Valor Numeric a comprovar: </label><br><br>
+                        <input type="number" name="num"/><br><br>
+                        Mostrar la llista de divisors                       
+                        <input type="radio" name="viewdivisors"/><br>
+                        <input type="submit" value="COMPROVAR" id="enviar"/><br><br>
+                    </form>
+                </div>
+            </article>
+            <article>
+                <a name="operacions"></a>
+                <b>CALCULA MCD</b>
+                <!--COMO YA SABEIS GET ENVIARIA LOS PARAMETROS DE FORMA VISIBLE POR LA URL Y POST NO-->
+                <div id="formulario">             
+                    <form action="../../controllers/activities/McdController.php" method="POST">
+                        <label>Valor 1 </label><br><br>
+                        <input type="number" name="num1"/><br><br>
+                        <label>Valor 2 </label><br><br>
+                        <input type="number" name="num2"/><br><br>
+                        <input type="submit" value="COMPROVAR" id="enviar"/><br><br>
+                    </form>
+                </div>
+            </article>
+
+            <article>
+                <a name="operacions"></a>
+                <b>CALCULA mcm</b>
+                <!--COMO YA SABEIS GET ENVIARIA LOS PARAMETROS DE FORMA VISIBLE POR LA URL Y POST NO-->
+                <div id="formulario">             
+                    <form action="../../controllers/activities/McmController.php" method="POST">
+                        <label>Valor 1 </label><br><br>
+                        <input type="number" name="num1"/><br><br>
+                        <label>Valor 2 </label><br><br>
+                        <input type="number" name="num2"/><br><br>
+                        <input type="submit" value="COMPROVAR" id="enviar"/><br><br>
+                    </form>
+                </div>
+            </article>
+            
+            <article>
+                <a name="operacions"></a>
+                <b>Serie de Fibonacci</b>
+                <!--COMO YA SABEIS GET ENVIARIA LOS PARAMETROS DE FORMA VISIBLE POR LA URL Y POST NO-->
+                <div id="formulario">             
+                    <form action="../../controllers/activities/FiboController.php" method="POST">
+                        <label>Número de termes: </label><br><br>
+                        <input type="number" name="numTermes"/><br><br>
+                        <label>Primer terme: </label><br><br>
+                        <input type="number" name="fib1"/><br><br>
+                        <label>Segon terme: </label><br><br>
+                        <input type="number" name="fib2"/><br><br>
+                        <input type="submit" value="COMPROVAR" id="enviar"/><br><br>
+                    </form>
+                </div>
+            </article>
+            
+            
+            <article>
+                <a name="calculbasic"></a>
+                <b>ESCULL LA OPERACIO A REALITZAR AMB 2 NUMEROS</b>
+
+                <div id="formulario">             
+                    <form action="../../controllers/activities/ArrayP2Controller.php" method="POST">
+                        <label>TREBALL AMB ARRAYS </label><br><br>
+                        <input type="number" name="min" placeholder="introdueix el valor minim"/><br><br>
+                        <input type="number" name="max" placeholder="introdueix el valor maxim"/><br><br>
+                        <input type="number" name="size" placeholder="introdueix la mida del array"/><br><br>
+                        Mostrar estadistiques (min(max/avg):                       
+                        <input type="radio" name="stats"/><br>
+                        <br>Selecciona si els vols ordenar:   
+                        <input list ="order" placeholder="Selecciona ordre (ASC/DESC)" name ="oper" />
+                        <datalist id="order">
+                            <option label = "ascedent" value ="asc"></option>
+                            <option label = "descendent" value ="desc"></option>
+                        </datalist>
+                        <br><br>Entra el valor que vols trobar (et donarem la/les posicions)
+                        <input type="number" name="find" placeholder="introdueix el valor a trobar"/><br><br>
+                        Vols coneixer totes les posicions
+                         <input type="radio" name="all"/><br>
+                        <input type="submit" value="EXECUTAR" id="enviar"/><br><br><br>
+                    </form>
+                </div>
+            </article>
+            
+             <article>
+                <br><br>                    
+            </article>	
+            
+        </section>
+
+        <footer>
+            <div class="darkstyle">  
+                <a><b> Autor: Jose Meseguer</b> </a> 
+            </div>		
+        </footer>
+    </body>
+</html>
