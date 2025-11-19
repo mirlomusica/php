@@ -106,3 +106,44 @@ function printArrayPlayers($playerArray){
         print "<br>";
     }
 }
+
+
+
+$string = "";
+
+for($i=0;$i<count($nbaTopScorers);$i++){
+    $player = $nbaTopScorers[$i];
+    
+    if(array_key_exists("champion", $player) && $player["champion"] >2){
+        if ($string != ""){
+            $string .= "; ";
+        }
+        $string.= $player['player'].", ".
+                $player['champion'].", ".
+                $player['points'];
+    }
+}
+
+print $string;
+print "<br>";
+
+
+$stringloco = "";
+
+foreach ($nbaTopScorers as $player){
+    if($player["position"] == "Forward"){
+        if($stringloco != ""){
+            $stringloco .= "; ";
+        }
+        
+        $stringloco .= $player["player"].",";
+        $stringloco .= $player["points"].",";
+        if(array_key_exists("champion", $player)){
+            $puntosmitad = $player["champion"]/2;
+            $stringloco .= $puntosmitad;
+        }else{
+            $stringloco .= "es un pringao";
+        }        
+    }
+}
+print $stringloco;
