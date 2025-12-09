@@ -56,7 +56,7 @@ function fibonacci($fib1,$fib2,$numTermes){
     $res = [];
     if($numTermes == 1){
         $res[]= $fib1;
-        return res;
+        return $res;
     }
     else{
         $res[]= $fib1;

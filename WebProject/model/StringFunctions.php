@@ -3,6 +3,7 @@
 
 function distchar($string, $char1, $char2)
 {
+    $string = strtolower($string);
 
     $pos1 = strpos($string, $char1, 0);
     if ($pos1 === false) {
@@ -10,7 +11,7 @@ function distchar($string, $char1, $char2)
     }
     $pos2 = strpos($string, $char2, 0);
     if ($pos2 === false) {
-        return -1;
+        return -2;
     }
     return abs($pos1 - $pos2);
 }
@@ -65,4 +66,15 @@ function mydecrypt($string, $encryptionArray)
         $ret.= chr($charnum);
     }
     return $ret;
+}
+
+function parseEncryptionArray($encryptionString){
+    $encryptionString = cleancad($encryptionString, " ");
+    $encryptionArray = explode(",", $encryptionString);
+    $res = [];
+foreach($encryptionArray as $str){
+        $res[] = intval($str);
+    }
+    
+    return $res;
 }
