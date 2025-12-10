@@ -1,48 +1,31 @@
 <?php
 
 
-include_once './model/StringFunctions.php';
+include_once './model/MathFunctions.php';
 
+$array = fillArray(20,0,10);
+printArray($array);
 
-$string = "ara si que si";
-$char1 = "x";
-$char2 = "s";
+$max =0;
+$min =0;
+$avg =0;
 
-$res = 12;
-print $res;
+arrayStats($array,$min,$max,$avg);
+print $min;
 print "<br>";
-$res = distchar($string, $char1, $char2);
-print $res;
-
-
-$string = "hola adios, que tal? Yo bien";
-$separators = " ,?";
-
+print $max;
 print "<br>";
-print cleancad($string, $separators);
-
-
+print $avg;
 print "<br>";
 
-$char = "a";
-print $char;
-$charnum = ord($char)+4;
-$char = chr($charnum);
-print $char;
-
+arraySort($array);
+printArray($array);
+arraySort($array,false);
+$s = arrayToString($array);
+print $s;
 print "<br>";
 
-$string = "aaaaaaaaaa";
-$encryptionArray = [1,1,2,2,3,3];
-$stringcrypt = mycrypt($string, $encryptionArray);
-print $stringcrypt;
-print "<br>";
-print strlen($stringcrypt);
+$pos = linSearch(4,$array);
+print "position 4: $pos";
 print "<br>";
 
-$stringDecrypted = mydecrypt($stringcrypt, $encryptionArray);
-print $stringDecrypted;
-print "<br>";
-print strlen($stringDecrypted);
-
-rand();
