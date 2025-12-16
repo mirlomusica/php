@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Aprenentatge per Projectes</title>
+        <meta charset="UTF-8">
+        <meta name="title" content="PortalWeb">
+        <link href="../../css/style.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+    <body>
+        <header  class="title">
+            <h2> Aprenentatge per Projectes </h2>
+            <section id="menu">
+                <nav  class="darkstyle">
+                    <div>
+                        <a href="../main.php" class="optmenu"> HOME </a>
+                        <a href="StringsView.html" class="optmenu"> STRINGS </a>
+                        <a href="ArrayAssocView.html" class="optmenu"> ARRAYS_ASSOC </a>
+                    </div>	
+                </nav>
+            </section>
+        </header>
+
+        <aside id="leftside">
+            <div class="darkstyle">
+                <nav>
+                    <br><br><br><br><br><br>				
+                </nav>
+            </div>
+        </aside>
+
+        <aside id="rightside">
+            <div class="darkstyle">
+                <h4>Referencies utils:</h4>
+                <br>
+                <a href="https://www.php.net/manual/es/" class="optmenu"><i>PHP.NET</i></a>  
+                <br><br>
+                <a href="https://www.w3schools.com/php/default.asp" class="optmenu"><i>W3CSCHOOLS</i></a> 
+            </div>
+        </aside>
+
+        <section id="central">
+            <a name="principal"></a>
+            <h4>ACTIVITATS MATEMATIQUES</h4>
+            <article>
+                <div id="formulario">  
+                    <form action="../../controllers/activities/PrimeController.php" method="POST">
+                        <br>Entra el numero que desees comprobar<br>
+                        <br><label>Valor:</label><input type="number" name="num"/><br>
+                        Mostrar la lista de divisores                       
+                        <input type="checkbox" name="showdivisors"/><br>
+                        <br><input type="submit" value="COMPROBAR" name="enviar" />
+                    </form>
+                </div>
+            </article>
+
+            <article>
+                <div id="formulario">  
+                    <form action="../../controllers/activities/BasicsController.php" method="POST">
+                        <br>Entra los numeros con los que desees operar: <br>
+                        <br><label>Valor:</label><input type="number" name="num1" placeholder="entra un numero"/><br>
+                        <br><label>Valor:</label><input type="number" name="num2" placeholder="entra un numero"/><br>
+                        Elige la operacion a realizar:                       
+                        <input list="operations" name="oper" placeholder="elige una operacion"/><br>
+                        <datalist id="operations">
+                            <option label="SUMA" value="+"></option>
+                            <option label="RESTA" value="-"></option>
+                            <option label="MULTIPLICACION" value="*"></option>
+                            <option label="DIVISION" value="/"></option>
+                        </datalist>    
+                        <br><input type="submit" value="COMPROBAR" name="enviar" />
+                    </form>
+                </div>
+            </article>	
+
+            <article>
+                <br><br>                    
+            </article>	
+
+        </section>
+
+        <footer>
+            <div class="darkstyle">  
+                <a><b> Autor: Jose Meseguer</b> </a> 
+            </div>		
+        </footer>
+    </body>
+</html>

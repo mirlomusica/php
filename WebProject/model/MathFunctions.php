@@ -208,15 +208,47 @@ function linSearch($value, $array)
     return -1;
 }
 
-function binSearch($value, $array)
+function binSearch($value, $array, $asc = true)
 {
     arraySort($array);
+    $bottom = 0;
+    $top = count($array) - 1;
     $middle = floor(count($array) / 2);
     while (true) {
         if ($value == $array[$middle]) {
-            return $middle;
+            $res = $middle;
+            while(true){
+                $nextRes = $res-1;
+                if($nextRes <0){
+                    return $res;
+                }
+                if($array[$nextRes] == $value){
+                    $res = $nextRes;
+                }else{
+                    return $res;
+                }
+            }
+            $res = $middle;
+            $nextRes = $res--;
+            return $res;
+        }elseif ($top-1 == $bottom){
+            if($array[$top]== $value){
+                return $top;
+            }else{
+                return -1;
+            }
         }
         if ($value < $array[$middle]) {
+            $top = $middle;
         }
+
+        if ($value > $array[$middle]) {
+            $bottom = $middle;
+        }
+        $middle = floor(($top - $bottom) / 2)+$bottom;
     }
+}
+
+function linSearchAll($value,$array){
+
 }
