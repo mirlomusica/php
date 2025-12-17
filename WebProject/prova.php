@@ -57,3 +57,60 @@ print "<br>";
 $pos = binSearch(1, $array);
 print "pos 1: $pos";
 print "<br>";
+
+print "<h2>linSearchAll:</h2>";
+print "array: $str";
+print "<br>";
+$pos = linSearchAll(1,$array);
+$res = arrayToString($pos);
+print "posicions del 1: $res";
+$test = ( $pos ==[1,2,3]);
+print "<br>";
+print "test result: $test";
+
+
+print "<h2>binSearchAll:</h2>";
+print "array: $str";
+print "<br>";
+$pos = binSearchAll(1,$array);
+$res = arrayToString($pos);
+print "posicions del 1: $res";
+$test = ( $pos ==[1,2,3]);
+print "<br>";
+print "test result: $test";
+
+
+
+print "<h1>Prova valors repetits (descendent)</h1>";
+$array = [0, 1, 1, 1, 4, 5, 6, 7, 8, 9];
+arraySort($array,false);
+$str = arrayToString($array);
+print "array: $str";
+print "<br>";
+$pos = binSearch(1, $array, false);
+print "pos 1: $pos";
+print "<br>";
+
+print "<h2>linSearchAll:</h2>";
+print "array: $str";
+print "<br>";
+$pos = linSearchAll(1,$array);
+$res = arrayToString($pos);
+print "posicions del 1: $res";
+$test = ( $pos ==[1,2,3]);
+print "<br>";
+print "test result: $test";
+
+
+print "<h2>binSearchAll:</h2>";
+print "array: $str";
+print "<br>";
+$pos = binSearchAll(1,$array, false);
+$res = arrayToString($pos);
+print "posicions del 1: $res";
+$test = ( $pos ==[1,2,3]);
+print "<br>";
+print "test result: $test";
+
+
+

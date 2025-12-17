@@ -43,7 +43,7 @@
                 <?php
                 print "LOGIN INCORRECTE<br><br>";
               
-                $intents = filter_input(INPUT_COOKIE, 'loginAttempts');
+                $intents = filter_input(INPUT_COOKIE, 'user');
                 
                 print "Portes realitzats: $intents intents<br><br>";
                 if ($intents == 5){

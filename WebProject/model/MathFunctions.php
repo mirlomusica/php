@@ -142,7 +142,7 @@ function arraySort(&$array, $asc = true)
     }
 }
 
-function arraySortAsc(&$array)
+function arraySortAscOld(&$array)
 {
     $done = true;
     do {
@@ -156,7 +156,25 @@ function arraySortAsc(&$array)
     } while ($done === false);
 }
 
-function arraySortDesc(&$array)
+function arraySortAsc(&$array)
+{
+    $done = true;
+    $size = count($array);
+    $whileI = 0;
+    do {
+        $top = $size-$whileI;
+        $done = true;
+        for ($i = 0; $i < $top - 1; $i++) {
+            if ($array[$i] > $array[$i + 1]) {
+                swap($array[$i], $array[$i + 1]);
+                $done = false;
+            }
+        }
+        $whileI++;
+    } while ($done === false);
+}
+
+function arraySortDescOld(&$array)
 {
     $done = true;
     do {
@@ -167,6 +185,24 @@ function arraySortDesc(&$array)
                 $done = false;
             }
         }
+    } while ($done === false);
+}
+
+function arraySortDesc(&$array)
+{
+    $done = true;
+    $size = count($array);
+    $whileI = 0;
+    do {
+        $top = $size-$whileI;
+        $done = true;
+        for ($i = 0; $i < $top - 1; $i++) {
+            if ($array[$i] < $array[$i + 1]) {
+                swap($array[$i], $array[$i + 1]);
+                $done = false;
+            }
+        }
+        $whileI++;
     } while ($done === false);
 }
 
@@ -210,31 +246,59 @@ function linSearch($value, $array)
 
 function binSearch($value, $array, $asc = true)
 {
-    arraySort($array);
+
+    if ($asc){
+        return binSearchAsc($value, $array);
+    }else{
+        return binSearchDesc($value, $array);
+    }
+}
+
+function linSearchAll($value, $array)
+{
+    $res = [];
+    for ($i = 0; $i < count($array); $i++) {
+        if ($array[$i] == $value) {
+            $res[] = $i;
+        }
+    }
+    return $res;
+}
+
+function binSearchAll($value, $array, $asc=true)
+{
+    $match = binSearch($value, $array, $asc);
+    $res = [$match];
+    while (true) {
+        $nextMatch = $match + 1;
+        if($nextMatch >=count($array)){
+            return $res;
+        }
+        if($array[$nextMatch] == $value){
+            $res[] = $nextMatch;
+            $match = $nextMatch;
+        }else{
+            return $res;
+        }
+    }
+}
+
+function binSearchAsc($value, $array){
     $bottom = 0;
     $top = count($array) - 1;
     $middle = floor(count($array) / 2);
+    $res = -1;
+
+    //trobem un match
     while (true) {
         if ($value == $array[$middle]) {
             $res = $middle;
-            while(true){
-                $nextRes = $res-1;
-                if($nextRes <0){
-                    return $res;
-                }
-                if($array[$nextRes] == $value){
-                    $res = $nextRes;
-                }else{
-                    return $res;
-                }
-            }
             $res = $middle;
-            $nextRes = $res--;
-            return $res;
-        }elseif ($top-1 == $bottom){
-            if($array[$top]== $value){
+            break;
+        } elseif ($top - 1 == $bottom) {
+            if ($array[$top] == $value) {
                 return $top;
-            }else{
+            } else {
                 return -1;
             }
         }
@@ -245,10 +309,72 @@ function binSearch($value, $array, $asc = true)
         if ($value > $array[$middle]) {
             $bottom = $middle;
         }
-        $middle = floor(($top - $bottom) / 2)+$bottom;
+        $middle = floor(($top - $bottom) / 2) + $bottom;
     }
+
+    //trobem primer match
+    $nextRes = $res--;
+    while (true) {
+        $nextRes = $res - 1;
+        if ($nextRes < 0) {
+            return $res;
+        }
+        if ($array[$nextRes] == $value) {
+            $res = $nextRes;
+        } else {
+            return $res;
+        }
+    }
+    return $res;
 }
 
-function linSearchAll($value,$array){
+function binSearchDesc($value, $array){
+    $bottom = 0;
+    $top = count($array) - 1;
+    $middle = floor(count($array) / 2);
+    $res = -1;
+
+    //trobem un match
+    while (true) {
+        if ($value == $array[$middle]) {
+            $res = $middle;
+            $res = $middle;
+            break;
+        } elseif ($top - 1 == $bottom) {
+            if ($array[$top] == $value) {
+                return $top;
+            } else {
+                return -1;
+            }
+        }
+        if ($value > $array[$middle]) {
+            $top = $middle;
+        }
+
+        if ($value < $array[$middle]) {
+            $bottom = $middle;
+        }
+        $middle = floor(($top - $bottom) / 2) + $bottom;
+    }
+
+    //trobem primer match
+    $nextRes = $res--;
+    while (true) {
+        $nextRes = $res - 1;
+        if ($nextRes < 0) {
+            return $res;
+        }
+        if ($array[$nextRes] == $value) {
+            $res = $nextRes;
+        } else {
+            return $res;
+        }
+    }
+    return $res;
+}
+
+function checkSortAsc($array, $asc=true){
+    $lower = $array[0];
+    for
 
 }
