@@ -154,21 +154,24 @@
                         <input type="number" name="max" placeholder="introdueix el valor maxim"/><br><br>
                         <input type="number" name="size" placeholder="introdueix la mida del array"/><br><br>
                         Mostrar estadistiques (min(max/avg):                       
-                        <input type="radio" name="stats"/><br>
+                        <input type="checkbox" name="stats"/><br>
                         <br>Selecciona si els vols ordenar:   
-                        <input list ="order" placeholder="Selecciona ordre (ASC/DESC)" name ="oper" />
+                        <input list ="order" type="string" placeholder="Selecciona ordre (ASC/DESC)" name ="order" />
                         <datalist id="order">
                             <option label = "ascedent" value ="asc"></option>
                             <option label = "descendent" value ="desc"></option>
                         </datalist>
                         <br><br>Entra el valor que vols trobar (et donarem la/les posicions)
                         <input type="number" name="find" placeholder="introdueix el valor a trobar"/><br><br>
-                        Vols coneixer totes les posicions
-                         <input type="radio" name="all"/><br>
+                        Cerca primera posició
+                         <input type="checkbox" name="first"/><br>
+                        Cerca totes les posicions
+                         <input type="checkbox" name="all"/><br>
                         <input type="submit" value="EXECUTAR" id="enviar"/><br><br><br>
                     </form>
                 </div>
             </article>
+            
             
              <article>
                 <br><br>                    

@@ -373,8 +373,3 @@ function binSearchDesc($value, $array){
     return $res;
 }
 
-function checkSortAsc($array, $asc=true){
-    $lower = $array[0];
-    for
-
-}
