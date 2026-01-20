@@ -1,5 +1,10 @@
 <?php
 
-include './model/nbaQuests.php';
+include 'model/ArrayQuests.php';
 
-var_dump($arrayQuest);
+$index = rand(0,19);
+$numRes = 4;
+
+$question = questAleat($index,$numRes,"nba");
+
+printQuestion($question);

@@ -156,11 +156,11 @@
                         Mostrar estadistiques (min(max/avg):                       
                         <input type="checkbox" name="stats"/><br>
                         <br>Selecciona si els vols ordenar:   
-                        <input list ="order" type="string" placeholder="Selecciona ordre (ASC/DESC)" name ="order" />
-                        <datalist id="order">
-                            <option label = "ascedent" value ="asc"></option>
-                            <option label = "descendent" value ="desc"></option>
-                        </datalist>
+                        <select name="order">
+                            <option value="None">Sense ordenar</option>
+                            <option value="asc">Asc</option>
+                            <option value="Desc">Desc</option>
+                        </select>
                         <br><br>Entra el valor que vols trobar (et donarem la/les posicions)
                         <input type="number" name="find" placeholder="introdueix el valor a trobar"/><br><br>
                         Cerca primera posició
