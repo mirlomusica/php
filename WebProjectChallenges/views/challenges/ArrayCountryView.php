@@ -47,7 +47,7 @@
                 print "El cuestionario realizara $preguntas preguntas<br><br>";
                 
                 $intentos = filter_input(INPUT_COOKIE,"intentos");
-                $aciertos = filter_input(INPUT_COOKIE,"aciertos");
+                $aciertos = (int) filter_input(INPUT_COOKIE,"aciertos");
                 $errores = filter_input(INPUT_COOKIE,"errores");
                 
                 print "Estamos en $intentos ($aciertos aciertos / $errores errores)";

@@ -66,7 +66,7 @@
                 }
                 
                 if ( $ingame == 0 ) {       // prova finalitzada
-                    print "<p><a href=\"../main.php\">Tornar al Homepage</a></p>\n";
+                    print "<p><a href=\"../Main.php\">Tornar al Homepage</a></p>\n";
                 } else {
                     if ($trueResponse == -1) {      // primera vegada que es presenta el repte a l'usuari i encara no hi ha resposta
                         print "<br>Comences amb $currentPoints punts inicials.";

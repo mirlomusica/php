@@ -1,5 +1,26 @@
 <?php
+session_start();
 
-print "<h1>T O   D O ...</h1>";
+include "../../model/questions.php";
 
-//header('location: ../../views/ArrayChallengeView.php');
+function challengeInit()
+{
+    $_SESSION["intentos"] = 10;
+}
+
+if (!$_SESSION["questionChallengeStarted"]) {
+    $_SESSION["questionChallengeStarted"] = true;
+    challengeInit();
+}
+$question = questAleat();
+setcookie("intentos", $_SESSION["intentos"], 0, "/", "localhost");
+setcookie("pregunta", $question["quest"], 0, "/", "localhost");
+setcookie("a)", $question["a)"], 0, "/", "localhost");
+setcookie("b)", $question["b)"], 0, "/", "localhost");
+setcookie("c)", $question["c)"], 0, "/", "localhost");
+
+
+
+
+
+header('location: ../../views/ArrayChallengeView.php');

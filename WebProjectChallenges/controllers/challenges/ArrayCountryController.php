@@ -2,7 +2,7 @@
 
 session_start();    //COMENZAMOS A TRABAJAR CON VARIABLES DE SESION
 
-include_once '../../model/ArrayCountries.php';
+include_once '../../model/CountryArray.php';
 
 $RETO = 5;
 $PENALTY = 1;
@@ -21,6 +21,7 @@ function challengeInit(){
 
 
 function newQuestion(){
+    global $COUNTRIES;
     $newCountry = getCountry(rand(0, count($COUNTRIES) - 1));
     $countryname = $newCountry["pais"];
     $_SESSION["capital"] = $newCountry["capital"];
