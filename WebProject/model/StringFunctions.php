@@ -78,3 +78,27 @@ foreach($encryptionArray as $str){
     
     return $res;
 }
+
+function isConsonant($char){
+    if(str_contains("qwrtypsdfghjklñzxcvbnm", $char)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function extractConsonants($string,$filterDuplicates){
+    $string = strtolower($string);
+    $res = "";
+    for($i=0;$i<strlen($string);$i++){
+        if(isConsonant($string[$i])){
+            if(!$filterDuplicates){
+                $res .= $string[$i];
+            } elseif (!str_contains($res, $string[$i])) {
+                $res .= $string[$i];
+            }
+        }
+    }
+    return $res;
+}

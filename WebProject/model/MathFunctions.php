@@ -373,3 +373,13 @@ function binSearchDesc($value, $array){
     return $res;
 }
 
+function extractPrimes($array){
+    $res = [];
+    foreach($array as $num){
+        if(isPrime($num)){
+            $res[]= $num;
+        }
+    }
+    return $res;
+}
+
