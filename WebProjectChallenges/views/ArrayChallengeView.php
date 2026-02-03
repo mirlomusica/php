@@ -54,7 +54,13 @@
 
                 $intentos = filter_input(INPUT_COOKIE, 'intentos');
                 $pregunta = filter_input(INPUT_COOKIE, 'pregunta');
+                $respuestaCorrecta = filter_input(INPUT_COOKIE, "correctAnswer");
 
+                if($respuestaCorrecta){
+                    print "<p>RESPUESTA CORRECTA!!</p>";
+                }else{
+                    print "<p>Respuesta incorrecta...</p>";
+                }
                 print "<p>Te quedan: $intentos intentos</p>";
                 print "<p><b>Pregunta: $pregunta</b></p>";
 
@@ -67,17 +73,17 @@
                 $b = filter_input(INPUT_COOKIE, 'b)');
                 $c = filter_input(INPUT_COOKIE, 'c)');
                     print '
-                    <form action = "../../controllers/challenges/MathChallengeController.php" method="POST">
-                        <input type="radio" id="a" name="resposta" />
-                        <label for="a">'.$a.'</label>
-                        <input type="radio" id="b" name="resposta" />
-                        <label for="a">'.$b.'</label>
-                        <input type="radio" id="c" name="resposta" />
-                        <label for="a">'.$c.'</label>
+                    <form action = "../controllers/challenges/QuestionaryChallengeController.php" method="POST">
+                        <input type="radio" id="a" value="a" name="resposta" />
+                        <label for="a">a) '.$a.'</label><br><br>
+                        <input type="radio" id="b" value="b" name="resposta" />
+                        <label for="a">b) '.$b.'</label><br><br>
+                        <input type="radio" id="c" value="c" name="resposta" />
+                        <label for="a">c) '.$c.'</label><br><br>
                         <input type="submit" value="CHECK" id="check" name="enviar"/>
+                    </form>
                     ';
                     ?>
-                    </form>
                 </div>
             </article>	
         </section>

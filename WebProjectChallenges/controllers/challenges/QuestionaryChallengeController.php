@@ -5,21 +5,38 @@ include "../../model/questions.php";
 
 function challengeInit()
 {
+    $_SESSION["questionChallengeStarted"] = true;
     $_SESSION["intentos"] = 10;
 }
 
-if (!$_SESSION["questionChallengeStarted"]) {
-    $_SESSION["questionChallengeStarted"] = true;
-    challengeInit();
+
+function newQuestion()
+{
+    $question = questAleat();
+    setcookie("intentos", $_SESSION["intentos"], 0, "/");
+    setcookie("pregunta", $question["quest"], 0, "/");
+    setcookie("a)", $question["a)"], 0, "/");
+    setcookie("b)", $question["b)"], 0, "/");
+    setcookie("c)", $question["c)"], 0, "/");
+    $_SESSION["question"] = $question;
 }
-$question = questAleat();
-setcookie("intentos", $_SESSION["intentos"], 0, "/", "localhost");
-setcookie("pregunta", $question["quest"], 0, "/", "localhost");
-setcookie("a)", $question["a)"], 0, "/", "localhost");
-setcookie("b)", $question["b)"], 0, "/", "localhost");
-setcookie("c)", $question["c)"], 0, "/", "localhost");
 
+if (!$_SESSION["questionChallengeStarted"]) {
+    challengeInit();
+    newQuestion();
+    header('location: ../../views/ArrayChallengeView.php');
+}
 
+$resposta = filter_input(INPUT_POST, "resposta");
+$prevQuestion = $_SESSION["question"];
+
+if($resposta == $prevQuestion["resp"]){
+    setcookie("correctAnswer", true, 0, "/");
+}else{
+    setcookie("correctAnswer", false, 0, "/");
+}
+
+newQuestion();
 
 
 

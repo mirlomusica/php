@@ -61,6 +61,8 @@
                         print "<p><a href=\"../controllers/challenges/QuestionaryChallengeController.php\">Superar el cuestionari</a></p>\n";
                     }
                 } else {
+                    $level = filter_input(INPUT_COOKIE, 'level');
+                    print "<p>hola$level</p>";
                     print "<p><a href=\"../index.html\">Tornar a la pàgina principal</a></p>\n";
                 }
                 ?> 
