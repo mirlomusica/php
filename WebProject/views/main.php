@@ -16,6 +16,7 @@
                         <a href="activities/NumbersView.html" class="optmenu"> NUMBERS & ARRAYS </a>
                         <a href="activities/StringsView.html" class="optmenu"> STRINGS</a>
                         <a href="activities/ArrayAssocView.html" class="optmenu"> ARRAYS_ASSOC </a>
+                        <a href="activities/BooksFileView.html" class="optmenu"> TREBALL AMB FITXERS </a>
                     </div>
                 </nav>
             </section>

@@ -213,14 +213,6 @@ function swap(&$a, &$b)
     $b = $buf;
 }
 
-function printArray($array)
-{
-    foreach ($array as $val) {
-        print $val;
-        print ", ";
-    }
-    print "<br>";
-}
 
 function arrayToString($array)
 {

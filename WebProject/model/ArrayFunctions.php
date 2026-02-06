@@ -19,3 +19,12 @@ function printDetailsArray($array){
     
     
 }
+
+function arrayContains($haystack, $needle){
+    foreach($haystack as $value){
+        if($needle == $value){
+            return true;
+        }
+    }
+    return false;
+}
