@@ -58,7 +58,7 @@
                 <div>
                     <h4>RESULTAT:</h4>
                     <?php
-                        $res = filter_input(INPUT_COOKIE, "result");
+                        $res = filter_input(INPUT_COOKIE, "resultBooksByYear");
                         print $res;
                 ?>
                 </div>
@@ -128,7 +128,7 @@
                 <br><br>                    
             </article>	
             
-            <article>
+            <article id="BooksByPrice">
                 <a name="calculbasic"></a>
                 <b>MOSTRA LLIBRES PER PREU</b>
 
@@ -144,6 +144,110 @@
                     <h4>RESULTAT:</h4>
                     <?php
                         $res = filter_input(INPUT_COOKIE, "resultBooksByPrice");
+                        print $res;
+                ?>
+                </div>
+            </article>
+
+            <article id="YearsByAuthor">
+                <a name="calculbasic"></a>
+                <b>MOSTRA ANYS PER AUTOR</b>
+
+                <div id="formulario">             
+                    <form action="../../controllers/activities/YearsByAuthorController.php" method="POST">
+                        <label>Introdueix autor:</label><br><br>
+                        <input type="text" name="author" placeholder="Autor"/><br><br>
+                        <input type="submit" value="EXECUTAR" id="enviar"/><br>
+                    </form>
+                </div>
+                <div>
+                    <h4>RESULTAT:</h4>
+                    <?php
+                        $res = filter_input(INPUT_COOKIE, "resultYearsByAuthor");
+                        print $res;
+                ?>
+                </div>
+            </article>
+
+            <article id="Topic">
+                <a name="calculbasic"></a>
+                <b>MOSTRA TEMES</b>
+
+                <div id="formulario">             
+                    <form action="../../controllers/activities/TopicsController.php" method="POST">
+                        <input type="submit" value="EXECUTAR" id="enviar"/><br>
+                    </form>
+                </div>
+                <div>
+                    <h4>RESULTAT:</h4>
+                    <?php
+                        $res = filter_input(INPUT_COOKIE, "resultTopics");
+                        print $res;
+                ?>
+                </div>
+            </article>
+            
+            <article id="InfoByAuthor">
+                <a name="calculbasic"></a>
+                <b>INFORMACIÓ PER AUTORS</b>
+
+                <div id="formulario">             
+                    <form action="../../controllers/activities/InfoByAuthorController.php" method="POST">
+                        <label>Introdueix autor:</label><br><br>
+                        <input type="text" name="author" placeholder="Autor"/><br><br>
+                        <input type="submit" value="EXECUTAR" id="enviar"/><br>
+                    </form>
+                </div>
+                <div>
+                    <h4>RESULTAT:</h4>
+                    <?php
+                        $res = filter_input(INPUT_COOKIE, "resultInfoByAuthor");
+                        print $res;
+                ?>
+                </div>
+            </article>
+
+            <article id="BooksBetweenYears">
+                <a name="calculbasic"></a>
+                <b>MOSTRA LLIBRES ENTRE 2 ANYS</b>
+
+                <div id="formulario">             
+                    <form action="../../controllers/activities/BooksBetweenYearsController.php" method="POST">
+                        <label>Introdueix els límits de preu:</label><br><br>
+                        <input type="number" name="minYear" placeholder="any mínim"/><br><br>
+                        <input type="number" name="maxYear" placeholder="any màxim"/><br><br>
+                        <input type="submit" value="EXECUTAR" id="enviar"/><br>
+                    </form>
+                </div>
+                <div>
+                    <h4>RESULTAT:</h4>
+                    <?php
+                        $res = filter_input(INPUT_COOKIE, "resultBooksBetweenYears");
+                        print $res;
+                ?>
+                </div>
+            </article>
+            
+             <article>
+                <br><br>                    
+            </article>	
+
+            <article id="BooksByTopicAndYear">
+                <a name="calculbasic"></a>
+                <b>MOSTRA LLIBRES PER TEMA I ANY</b>
+
+                <div id="formulario">             
+                    <form action="../../controllers/activities/BooksByTopicAndYearController.php" method="POST">
+                        <label>Introdueix els límits de preu:</label><br><br>
+                        <input type="text" name="topic" placeholder="tema"/><br><br>
+                        <input type="number" name="year" placeholder="any"/><br><br>
+                        <input type="submit" value="EXECUTAR" id="enviar"/><br>
+                    </form>
+                </div>
+                <div>
+                    <h4>RESULTAT:</h4>
+                    <?php
+                        $res = filter_input(INPUT_COOKIE, "resultBooksByTopicAndYear");
                         print $res;
                 ?>
                 </div>

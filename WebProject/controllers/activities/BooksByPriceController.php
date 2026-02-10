@@ -14,9 +14,5 @@ if ($res) {
 }else{
     $stringResult = "Sense Resultats";
 }
-/* var_dump($stringResult); */
-
-setcookie('resultBooksByPrice', $stringResult, 0, '/');
-
-require ('../../views/activities/BooksFileView.php');
-
+$result = setcookie('resultBooksByPrice', $stringResult, 0, '/');
+header('location: ../../views/activities/BooksFileView.php#BooksByPrice');

@@ -13,6 +13,6 @@ if ($res) {
     $stringResult = "Sense Resultats";
 }
 
-setcookie('result', $stringResult, 0, '/');
+setcookie('resultBooksByYear', $stringResult, 0, '/');
 
 header('location: ../../views/activities/BooksFileView.php');
