@@ -17,5 +17,6 @@ if ($res) {
 
 setcookie('resultBooksByAuthor', $stringResult, 0, '/');
 
-header('location: ../../views/activities/BooksFileView.php');
+header('location: ../../views/activities/BooksFileView.php#BooksByAuthor');
+
 

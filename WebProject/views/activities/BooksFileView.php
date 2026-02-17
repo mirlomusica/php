@@ -52,6 +52,11 @@
                     <form action="../../controllers/activities/BooksByYearController.php" method="POST">
                         <label>Sel·lecciona un any: </label><br><br>
                         <input type="number" name="year" placeholder="introdueix un valor numeric"/><br><br>
+
+                        <label>Si vols desar els resultats:</label><br><br>
+                        <input type="text" name="filepath" placeholder="Ruta al fitxer de desat"/><br><br>
+                        <label for="overwrite">sobreescriure les dades existents </label>
+                        <input type="checkbox" name="overwrite" /><br><br>
                         <input type="submit" value="EXECUTAR" id="enviar"/><br>
                     </form>
                 </div>
@@ -60,11 +65,14 @@
                     <?php
                         $res = filter_input(INPUT_COOKIE, "resultBooksByYear");
                         print $res;
+                        print "<br>";
+                        $reswrite = filter_input(INPUT_COOKIE, "resultBooksByYearWrite");
+                        print $reswrite;
                 ?>
                 </div>
-            </article>
+            </article > 
 
-            <article>
+            <article id="AuthorsByTopic">
                 <a name="calculbasic"></a>
                 <b>MOSTRA AUTORS PER TEMA</b>
 
@@ -72,6 +80,11 @@
                     <form action="../../controllers/activities/AuthorsByTopicController.php" method="POST">
                         <label>Sel·lecciona un tema: </label><br><br>
                         <input type="text" name="topic" placeholder="introdueix tema"/><br><br>
+
+                        <label>Si vols desar els resultats:</label><br><br>
+                        <input type="text" name="filepath" placeholder="Ruta al fitxer de desat"/><br><br>
+                        <label for="overwrite">sobreescriure les dades existents </label>
+                        <input type="checkbox" name="overwrite" /><br><br>
                         <input type="submit" value="EXECUTAR" id="enviar"/><br>
                     </form>
                 </div>
@@ -80,11 +93,14 @@
                     <?php
                         $res = filter_input(INPUT_COOKIE, "resultAuthorsByTopic");
                         print $res;
+                        print "<br>";
+                        $reswrite = filter_input(INPUT_COOKIE, "resultBooksByYearWrite");
+                        print $reswrite;
                 ?>
                 </div>
             </article>
             
-            <article>
+            <article id="BooksByAuthor">
                 <a name="calculbasic"></a>
                 <b>MOSTRA LLIBRES PER AUTOR</b>
 
@@ -248,6 +264,30 @@
                     <h4>RESULTAT:</h4>
                     <?php
                         $res = filter_input(INPUT_COOKIE, "resultBooksByTopicAndYear");
+                        print $res;
+                ?>
+                </div>
+            </article>
+
+            <article id="WriteStringData">
+                <a name="calculbasic"></a>
+                <b>Escriu a un fitxer</b>
+
+                <div id="formulario">             
+                    <form action="../../controllers/activities/WriteStringDataController.php" method="POST">
+                        <label>Tria el fitxer i la informació a escriure</label><br><br>
+                        <input type="text" name="filePath" placeholder="ruta al fitxer"/><br><br>
+                        <input type="text" name="data" placeholder="info"/><br><br>
+
+                        <label for="overwrite">sobreescriure les dades existents </label>
+                        <input type="checkbox" name="overwrite" /><br><br>
+                        <input type="submit" value="EXECUTAR" id="enviar"/><br>
+                    </form>
+                </div>
+                <div>
+                    <h4>RESULTAT:</h4>
+                    <?php
+                        $res = filter_input(INPUT_COOKIE, "resultWriteStringData");
                         print $res;
                 ?>
                 </div>

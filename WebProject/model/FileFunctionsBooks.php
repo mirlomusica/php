@@ -147,3 +147,49 @@ function BooksByTopicAndYear($topic,$year, $filePath)
     }
     return $res;
 }
+
+function WriteStringData($stringData, $filePath){
+    $file = fopen($filePath, "w");
+    $ok = fwrite($file, $stringData);
+    return $ok;
+}
+
+function AppendStringData($stringData, $filePath){
+    $file = fopen($filePath, "a");
+    $ok = fwrite($file, $stringData);
+    return $ok;
+}
+
+function stringWriteOrAppend($stringData, $filePath, $overwrite){
+    if($overwrite){
+        $ok = WriteStringData($stringData, $filePath);
+    }else{
+        $ok = AppendStringData($stringData, $filePath);
+    }
+    if ($ok === false) return false;
+    else return true;
+}
+
+function WriteArrayData($array, $filePath){
+    $stringData = arrayFormatForFiles($array);
+    $file = fopen($filePath, "w");
+    $ok = fwrite($file, $stringData);
+    return $ok;
+}
+
+function AppendArrayData($array, $filePath){
+    $stringData = arrayFormatForFiles($array);
+    $file = fopen($filePath, "a");
+    $ok = fwrite($file, $stringData);
+    return $ok;
+}
+
+function ArrayWriteOrAppend($array, $filePath, $overwrite){
+    if($overwrite){
+        $ok = WriteArrayData($array, $filePath);
+    }else{
+        $ok = AppendArrayData($array, $filePath);
+    }
+    if ($ok === false) return false;
+    else return true;
+}

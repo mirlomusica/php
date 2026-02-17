@@ -214,14 +214,26 @@ function swap(&$a, &$b)
 }
 
 
-function arrayToString($array)
+function arrayToString($array, $separator=", ")
 {
+    if(!$array){
+        return "";
+    }
     $res = "";
     foreach ($array as $val) {
         if ($res != "") {
-            $res .= ", ";
+            $res .= $separator;
         }
         $res .= $val;
+    }
+    return $res;
+}
+
+function arrayFormatForFiles($array)
+{
+    $res = "";
+    foreach ($array as $val) {
+        $res .= $val."\n";
     }
     return $res;
 }
