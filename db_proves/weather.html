@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="input">
+    <button id="b">Tiempo</button>
+    <div id="mostrar"></div>
+    <script>
+        let b = document.getElementById("b");
+        let input = document.getElementById("input");
+        let mostrar = document.getElementById("mostrar");
+
+        b.addEventListener("click", () => {
+            let cityName = input.value
+            console.log(cityName);
+            fetch("https://api.openweathermap.org/data/2.5/weather?q=" + cityName + ",es&appid=1ebe8fb6c5d2654d9ceb6e243540f115")
+                .then((response) => response.json())
+                .then(data => {
+                    console.log(data)
+
+                    let poblacion = data.name;
+                    let viento = data.wind.speed;
+                    let temp = data.main.temp;
+                    mostrar.innerHTML = "";
+                    mostrar.innerHTML += "<h1>" + poblacion + "</h1>";
+                    mostrar.innerHTML += "<p> Velocidad del viento:" + viento + "</p>";
+                    mostrar.innerHTML += "<p> Temperatura:" + (temp - 270) + "</p>";
+                })
+        })
+    </script>
+</body>
+
+</html>

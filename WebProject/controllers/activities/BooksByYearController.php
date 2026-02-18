@@ -7,10 +7,11 @@ $year = filter_input(INPUT_POST, "year");
 
 $res = BooksByYear($year, "../../llibres.csv");
 
+$filePath = filter_input(INPUT_POST, "filepath");
+$overwrite = filter_input(INPUT_POST, "overwrite");
+
 if($filePath){
-    $filePath = filter_input(INPUT_POST, "filepath");
-    $overwrite = filter_input(INPUT_POST, "overwrite");
-    $ok = arrayWriteOrAppend($res, $filePath, $overwrite);
+    $ok = ArrayWriteOrAppend($res, $filePath, $overwrite);
     if($ok){
         $writeMessage = "Dades desades correctament";
     }else{

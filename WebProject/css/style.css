@@ -1,3 +1,6 @@
+*{
+    border-radius: 100px;
+}
 header{
 	background-image: radial-gradient(#f1e3dd, #87bdd8);
         color:#034f84;

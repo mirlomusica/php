@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #mostrar {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        
+        .card {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            margin: 10px;
+            width: 20vw;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Estaciones Bicing Barcelona</h3>
+    <script>
+        let mostrar = document.createElement("div");
+        mostrar.id = "mostrar";
+        document.body.appendChild(mostrar);
+        const url = "stations_v1.json";
+        fetch(url)
+            .then(resp => resp.json())
+            .then(data => {
+                console.log(data);
+                for (let i = 0; i < data.stations.length; i++) {
+                    let station = data.stations[i];
+
+                    let card = document.createElement("div");
+                    card.classList += "card";
+                    mostrar.appendChild(card);
+
+                    let id = station.id;
+                    let title = document.createElement("h2");
+                    title.innerText = "Estació: " + id;
+                    card.appendChild(title);
+
+                    let name = station.streetName
+                    let num = station.streetNumber
+                    let nametext = document.createElement("p");
+                    nametext.innerText = "Carrer: " + name + ", " + num;
+                    card.appendChild(nametext);
+
+                    let nearby = station.nearbyStations;
+                    let nearbytext = document.createElement("p");
+                    nearbytext.innerText = "Estacions Properes: " + nearby;
+                    card.appendChild(nearbytext);
+
+                    let latitude = station.latitude;
+                    let latitudetext = document.createElement("p");
+                    latitudetext.innerText = "Latitud: " + latitude;
+                    card.appendChild(latitudetext);
+
+                    let longitude = station.longitude;
+                    let longitudetext = document.createElement("p");
+                    longitudetext.innerText = "Longitud: " + longitude;
+                    card.appendChild(longitudetext);
+                }
+            })
+    </script>
+</body>
+
+</html>

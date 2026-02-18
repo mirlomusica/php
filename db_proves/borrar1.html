@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Cargar https://joseantpiqueras.com/mip.txt</h2>
+    <button id="b">cargar1</button>
+    <div id="mostrar"></div>
+
+    <script>
+        let b = document.getElementById("b");
+        let mostrar = document.getElementById("mostrar");
+        b.addEventListener("click", () => {
+            fetch("https://joseantpiqueras.com/mip.txt")
+                .then(response => response.text())
+                .then(data => {
+                    mostrar.innerHTML = data;
+                });
+
+        })
+    </script>
+
+</body>
+
+</html>

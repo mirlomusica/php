@@ -1,0 +1,83 @@
+{
+    "videojocs": [{
+            "títol": "The Legend of Zelda: Breath of the Wild",
+            "plataformes": ["Nintendo Switch", "Wii U"],
+            "any": 2017,
+            "categoria": "Aventura gràfica",
+            "imatge": "https://www.nintendo.com/eu/media/images/other_22/character_hubs/the_legend_of_zelda/16x9_Other_TheLegendOfZelda_Hub_image1600w.jpg",
+            "descripció": "Un joc d'exploració i aventures en un món obert ple de misteris i desafiaments."
+        },
+        {
+            "títol": "Minecraft",
+            "plataformes": ["PC", "Xbox", "PlayStation", "Nintendo Switch", "Mobile"],
+            "any": 2011,
+            "categoria": "Simulació",
+            "imatge": "",
+            "descripció": "Un joc de construcció i creativitat en un món format per blocs, amb modes de supervivència i creatiu."
+        },
+        {
+            "títol": "Civilization VI",
+            "plataformes": ["PC", "Nintendo Switch", "Xbox", "PlayStation"],
+            "any": 2016,
+            "categoria": "Estratègia",
+            "imatge": "https://example.com/civ6.jpg",
+            "descripció": "Construeix i lidera una civilització des dels seus inicis fins a la modernitat, competint amb altres imperis."
+        },
+        {
+            "títol": "The Sims 4",
+            "plataformes": ["PC", "PlayStation", "Xbox"],
+            "any": 2014,
+            "categoria": "Simulació",
+            "imatge": "https://example.com/sims4.jpg",
+            "descripció": "Un joc de simulació de vida on pots crear personatges, dissenyar cases i viure històries úniques."
+        },
+        {
+            "títol": "Portal 2",
+            "plataformes": ["PC", "Xbox", "PlayStation"],
+            "any": 2011,
+            "categoria": "Puzles",
+            "imatge": "https://example.com/portal2.jpg",
+            "descripció": "Un joc de trencaclosques en primera persona que combina humor i desafiaments físics amb portals."
+        },
+        {
+            "títol": "Overwatch",
+            "plataformes": ["PC", "Xbox", "PlayStation", "Nintendo Switch"],
+            "any": 2016,
+            "categoria": "Acció",
+            "imatge": "https://example.com/overwatch.jpg",
+            "descripció": "Un joc de tir en equip on cada heroi té habilitats úniques per conquerir els objectius."
+        },
+        {
+            "títol": "Stardew Valley",
+            "plataformes": ["PC", "Xbox", "PlayStation", "Nintendo Switch", "Mobile"],
+            "any": 2016,
+            "categoria": "Simulació",
+            "imatge": "https://example.com/stardewvalley.jpg",
+            "descripció": "Un joc de simulació rural on pots cultivar, pescar, explorar mines i relacionar-te amb els habitants."
+        },
+        {
+            "títol": "Assassin's Creed Valhalla",
+            "plataformes": ["PC", "Xbox", "PlayStation"],
+            "any": 2020,
+            "categoria": "Aventura",
+            "imatge": "https://example.com/valhalla.jpg",
+            "descripció": "Converteix-te en un víking llegendari i explora un món obert ambientat a l'Anglaterra medieval."
+        },
+        {
+            "títol": "Mario Kart 8 Deluxe",
+            "plataformes": ["Nintendo Switch"],
+            "any": 2017,
+            "categoria": "Curses",
+            "imatge": "https://example.com/mariokart8.jpg",
+            "descripció": "Competeix en carreres d'alta velocitat amb els personatges clàssics de Nintendo."
+        },
+        {
+            "títol": "Hollow Knight",
+            "plataformes": ["PC", "Nintendo Switch", "Xbox", "PlayStation"],
+            "any": 2017,
+            "categoria": "Metroidvania",
+            "imatge": "https://example.com/hollowknight.jpg",
+            "descripció": "Explora un món subterrani màgic i misteriós amb combats intensos i secrets amagats."
+        }
+    ]
+}

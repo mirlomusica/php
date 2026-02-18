@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h4>Pedir a saludo.php mediante fetch</h4>
+    <div id="mostrar"> dgdfg</div>
+    <script>
+        let mostrar = document.getElementById("mostrar");
+        mostrar.innerHTML = "cargando..."
+        fetch("saludo.php")
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                mostrar.innerText = data;
+                
+            })
+    </script>
+</body>
+
+</html>

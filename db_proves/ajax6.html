@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="carga">Carga PHP</button>
+    <div id="mostrar"></div>
+    <script>
+        let btncarga = document.getElementById("carga");
+        let mostrar = document.getElementById("mostrar");
+        btncarga.addEventListener("click", () => {
+            mostrar.innerHTML = "cargando...";
+            fetch("saludo.php")
+                .then(resp => resp.text())
+                .then(datos => mostrar.innerHTML = datos)
+        });
+    </script>
+</body>
+
+</html>

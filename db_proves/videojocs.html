@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #mostrar {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        
+        .card {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid red;
+            margin: 10px;
+            padding: 10px;
+            width: 400px;
+        }
+        
+        .imgCont {
+            display: flex;
+            height: 200px;
+        }
+        
+        img {
+            display: flex;
+            height: 100%;
+            width: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mostrar">
+
+    </div>
+
+    <script>
+        let mostrar = document.getElementById("mostrar");
+        fetch("videojocs.json")
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.videojocs[9].plataformes)
+
+                for (let i = 0; i < data.videojocs.length; i++) {
+                    let card = document.createElement("div")
+                    card.classList += "card";
+                    let title = document.createElement("h1")
+                    title.innerHTML = data.videojocs[i].títol;
+                    let plataformes = document.createElement("p")
+                    plataformes.innerHTML = "<b>Plataformes:</b> " + data.videojocs[i].plataformes;
+
+                    let imgCont = document.createElement("div")
+                    imgCont.classList = "imgCont"
+                    let img = document.createElement("img")
+                    img.src = data.videojocs[i].imatge
+                    imgCont.appendChild(img)
+
+                    card.appendChild(title);
+                    card.appendChild(plataformes)
+                    card.appendChild(imgCont)
+
+                    mostrar.appendChild(card);
+                }
+            })
+    </script>
+</body>
+
+</html>

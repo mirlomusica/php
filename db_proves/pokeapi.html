@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: ;
+        }
+        
+        body {
+            background-color: #CC0000;
+        }
+        
+        #mostrar {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .pokeCard {
+            background-color: #FFDE00;
+            border: 1px solid black;
+            min-width: 200px;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 5px;
+        }
+        
+        .pokeInfo {
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .typediv {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let mostrar = document.createElement("div");
+        mostrar.id = "mostrar"
+        document.body.appendChild(mostrar);
+        fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
+
+        .then(resp => resp.json())
+            .then(data => {
+                let pokemons = data.results
+                console.log(data)
+                pokemons.forEach(pokemon => {
+                    let card = document.createElement("div");
+                    mostrar.appendChild(card);
+
+                    let title = document.createElement("h1");
+                    let imgURL = fetch(pokemon.url)
+                        .then(resp => resp.json())
+                        .then(pokedata => {
+                            title.innerText = pokemon.name;
+                            card.appendChild(title);
+                            card.classList += "pokeCard"
+
+                            let info = document.createElement("div")
+                            info.classList += "pokeInfo"
+                            card.appendChild(info);
+
+                            let img = document.createElement("img");
+                            imgURL = pokedata.sprites.versions["generation-ii"].gold.front_default
+                            img.src = imgURL;
+                            info.appendChild(img)
+
+                            let typediv = document.createElement("div");
+                            typediv.classList += "pokediv"
+                            info.appendChild(typediv)
+                            let typetitle = document.createElement("h2");
+                            typetitle.innerText = "Type"
+                            typediv.appendChild(typetitle);
+                            let type = document.createElement("p");
+                            type.innerText = "";
+                            pokedata.types.forEach(slot => {
+                                if (type.innerText = "") {
+                                    type.innerText += "-";
+                                }
+                                type.innerText += slot.type.name
+                            });
+                            typediv.appendChild(type);
+
+                            let crydiv = document.createElement("div");
+                            crydiv.classList += ", crydiv"
+                            info.appendChild(crydiv)
+                            let crytitle = document.createElement("h2");
+                            crytitle.innerText = "Cry"
+                            crydiv.appendChild(crytitle);
+                            let cry = document.createElement("source");
+                            cry.src = pokedata.cries.legacy;
+                            cry.type = "audo/ogg";
+                            crydiv.appendChild(cry)
+
+                        })
+
+                });
+            });
+    </script>
+</body>
+
+</html>
