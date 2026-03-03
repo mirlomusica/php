@@ -1,0 +1,100 @@
+1,Introducción a la Programación en C#,Ana Pérez,programacion,2020,39.90
+2,Patrones de Diseño en .NET,Luis García,programacion,2019,44.50
+3,Fundamentos de Administración de Sistemas,María López,sistemas,2018,37.00
+4,Redes de Computadores Avanzadas,Carlos Ruiz,sistemas,2021,52.25
+5,Modelado y Diseño de Bases de Datos,Laura Sánchez,bases de datos,2017,41.75
+6,SQL Avanzado para Analistas de Datos,Javier Martín,bases de datos,2022,46.00
+7,Prácticas de Integración Continua con Jenkins,Sara Gómez,devops,2020,35.95
+8,Automatización de Infraestructura con Terraform,Diego Romero,devops,2021,49.90
+9,Microservicios con Kubernetes y Docker,Elena Navarro,devops,2023,55.20
+10,Optimización de Consultas en PostgreSQL,Pedro Castillo,bases de datos,2021,43.30
+11,Programación Orientada a Objetos con Java,Isabel Torres,programacion,2018,38.50
+12,Introducción a Python para Ciencia de Datos,Raúl Herrera,programacion,2022,47.90
+13,Algoritmos y Estructuras de Datos en C++,Marta Vidal,programacion,2019,42.75
+14,Desarrollo de APIs REST con ASP.NET Core,Andrés Molina,programacion,2021,45.60
+15,Arquitectura de Computadores Básica,Jorge Iglesias,sistemas,2016,34.20
+16,Administración de Servidores Linux,Patricia Rueda,sistemas,2020,48.10
+17,Virtualización con VMware y KVM,Tomás Delgado,sistemas,2021,50.40
+18,Seguridad en Redes y Sistemas,Beatriz Núñez,sistemas,2022,53.80
+19,Fundamentos de Bases de Datos Relacionales,Nuria Campos,bases de datos,2015,32.90
+20,NoSQL y Bases de Datos Distribuidas,Sergio Vidal,bases de datos,2020,44.10
+21,Modelado Dimensional para Data Warehousing,Clara Aguado,bases de datos,2019,46.95
+22,Administración de Oracle Database,Óscar Benítez,bases de datos,2018,51.30
+23,Introducción a DevOps y Cultura Ágil,Marina Soler,devops,2019,36.80
+24,Infraestructura como Código con Ansible,Alberto Pons,devops,2020,42.60
+25,CI/CD con GitLab y Docker,Ricardo Vives,devops,2021,47.20
+26,Monitorización con Prometheus y Grafana,Silvia Calvo,devops,2022,39.75
+27,Desarrollo Web con HTML5 y CSS3,David Romero,programacion,2017,29.90
+28,JavaScript Moderno con ES2020,Inés Blanco,programacion,2021,36.40
+29,Desarrollo Frontend con React,Samuel Duarte,programacion,2020,41.50
+30,Desarrollo Full Stack con Node.js y MongoDB,Paula Izquierdo,programacion,2021,48.70
+31,Programación Funcional en Scala,Héctor Lozano,programacion,2018,45.10
+32,Programación Concurrente y Paralela,Alejandro Sanz,programacion,2019,49.80
+33,Introducción al Machine Learning con Python,Noelia Ferrer,programacion,2020,52.60
+34,Deep Learning con TensorFlow,Karla Medina,programacion,2021,55.90
+35,Sistemas Operativos: Conceptos y Diseño,Ignacio Bravo,sistemas,2017,39.20
+36,Cloud Computing con AWS Básico,Verónica Santos,sistemas,2019,46.30
+37,Arquitecturas de Alta Disponibilidad,Jaime Rubio,sistemas,2020,51.70
+38,Redes Inalámbricas y Seguridad,Adriana León,sistemas,2018,43.60
+39,SQL desde Cero,Rafael Campos,bases de datos,2016,27.80
+40,Optimización de Bases de Datos MySQL,Lucía Prieto,bases de datos,2019,38.90
+41,Bases de Datos para Analítica de Big Data,Manuel Cid,bases de datos,2021,54.20
+42,Introducción a PostgreSQL,Olga Carrasco,bases de datos,2018,33.50
+43,DevOps con Kubernetes en Producción,Enrique Fuentes,devops,2021,57.40
+44,Gestión de Configuración con Chef y Puppet,Celia Rey,devops,2017,40.25
+45,Observabilidad y Logging Centralizado,Lorena Márquez,devops,2022,46.15
+46,Automatización de Despliegues en la Nube,Gonzalo Riera,devops,2020,48.95
+47,Programación en Go para Servicios Web,Andrea Cebrián,programacion,2021,44.80
+48,Desarrollo de Aplicaciones Móviles con Kotlin,Óscar Valero,programacion,2019,42.30
+49,Patrones de Arquitectura de Software,Teresa Valls,programacion,2018,53.10
+50,Refactorización de Código Legado,Esteban Costa,programacion,2017,39.60
+51,Introducción a Rust para Sistemas,Álvaro Bernal,programacion,2022,47.50
+52,Programación en PHP Moderno,Carla Escribano,programacion,2020,35.40
+53,Scripting con Bash y PowerShell,Daniel Lobo,programacion,2018,31.90
+54,Ingeniería de Requisitos de Software,Elisa Duarte,programacion,2016,37.20
+55,Introducción a la Ciberseguridad,Ismael Pardo,sistemas,2019,41.80
+56,Criptografía Aplicada,Rebeca Mena,sistemas,2021,49.50
+57,Gestión de Identidades y Accesos,Victor Peña,sistemas,2020,44.10
+58,Redes Definidas por Software,Patricia Cortés,sistemas,2022,52.00
+59,Fundamentos de Modelado de Datos,Ingrid Aparicio,bases de datos,2017,36.30
+60,Integración de Datos con ETL,Roberto Mateos,bases de datos,2019,42.90
+61,Bases de Datos en la Nube,Carolina Rivas,bases de datos,2021,48.20
+62,GraphQL y APIs de Datos,Jordi Miralles,bases de datos,2020,39.95
+63,DevOps para Equipos Pequeños,Marta Cid,devops,2018,34.80
+64,Microservicios y Observabilidad,Tomás Varela,devops,2020,46.70
+65,Contenedores con Docker desde Cero,Julia Roig,devops,2019,38.60
+66,Plataformas de Contenedores con OpenShift,Alberto Luna,devops,2021,51.30
+67,Arquitectura Limpia en .NET,Marcos Vidal,programacion,2021,49.90
+68,TDD y BDD en Proyectos Ágiles,Silvia Pino,programacion,2019,43.70
+69,Desarrollo Seguro de Software,Óscar Calatayud,programacion,2020,45.80
+70,Pruebas Automatizadas con Selenium,Beatriz Lanza,programacion,2018,37.40
+71,Introducción a TypeScript,Luis Ferrán,programacion,2021,33.90
+72,Sistemas Distribuidos: Teoría y Práctica,Natalia Campos,sistemas,2018,50.20
+73,Administración de Sistemas Windows Server,Ramón Arroyo,sistemas,2017,39.10
+74,Monitorización de Infraestructuras TI,Gloria Bueno,sistemas,2020,42.60
+75,Redes TCP/IP para Administradores,Joaquín Salas,sistemas,2016,31.80
+76,Bases de Datos Orientadas a Objetos,Andrea Plaza,bases de datos,2015,34.70
+77,Indexación y Rendimiento en SQL Server,Francisco Sáez,bases de datos,2018,45.30
+78,Introducción a MongoDB,Marta Soria,bases de datos,2019,37.95
+79,Almacenes de Datos en Azure,Ignacio Pino,bases de datos,2022,53.40
+80,DevOps Empresarial a Gran Escala,Sonia Gallardo,devops,2021,56.80
+81,Automatización de Pruebas de Infraestructura,Julio Viana,devops,2020,44.90
+82,Site Reliability Engineering Básico,Paula Briones,devops,2022,52.60
+83,Git y Control de Versiones,Helena Vela,programacion,2016,28.50
+84,Introducción a UML y Diseño Orientado a Objetos,Fernando Cid,programacion,2015,31.40
+85,Programación en Swift para iOS,Lorena Pascual,programacion,2019,43.20
+86,Desarrollo de APIs con FastAPI,Iván Casas,programacion,2022,47.90
+87,Programación de Videojuegos con Unity,Carles Roca,programacion,2018,41.30
+88,Desarrollo Web con Django,Lucía Montoro,programacion,2020,44.60
+89,Introducción a R para Estadística,Andrés Pino,programacion,2017,35.70
+90,Machine Learning en la Nube,Patricia Ríos,programacion,2021,54.80
+91,Sistemas de Colas y Rendimiento,José Ramón Díaz,sistemas,2019,46.20
+92,Administración de Redes Cisco,Jordi Pujol,sistemas,2018,49.10
+93,Backup y Recuperación de Desastres,Marina Roca,sistemas,2020,42.30
+94,Automatización de Redes con Python,Óscar Requena,sistemas,2021,48.50
+95,Modelado de Datos con Power BI,Elena Sala,bases de datos,2020,39.80
+96,Calidad de Datos y Gobierno,Ricardo Nebot,bases de datos,2021,47.10
+97,Big Data con Hadoop y Spark,Laura Figueras,bases de datos,2019,55.60
+98,Streaming de Datos en Tiempo Real,David Sabaté,bases de datos,2022,52.40
+99,DevOps con GitHub Actions,Alba Cervera,devops,2022,43.90
+100,Contenerización de Aplicaciones Legadas,Joan Viladomat,devops,2023,58.20

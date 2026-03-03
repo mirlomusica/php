@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>CONTROL 3</title>
+        <meta charset="UTF-8">
+        <meta name="title" content="TEMA 3">
+        <link href="../css/style.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+    <body>
+        <header  class="title">
+            <h2> Aprenentatge per Projectes </h2>
+        </header>
+
+        <section id="central">
+            <a name="principal"></a>
+            <article>                
+                <div id="formulario">  
+                    <b>GESTIO DE DADES AMB FITXERS</b>
+                    <form action="../controllers/Control3Controller.php" method="POST">
+                        <br>Filtres sobre les dades del fitxer:<br>     
+                        
+                        <input type="text" name="provincia" placeholder="filtre per Provincia"/><br>
+                        <input type="text" name="ciutat" placeholder="filtre per Ciutat"/><br>
+                                               
+                        <br>Path del fitxer a escriure i filtrat per contingut del cognom, nom:<br>     
+                        
+                        <input type="text" name="pathName" placeholder="fitxer de destí"/><br>
+                        <input type="text" name="writeFilter" placeholder="inicial del cognom, nom"/><br>
+                        <input type="text" name="appendFilter" placeholder="altra inicial del cognom, nom"/>
+
+                        <input type="submit" value="ENVIA" id="enviar"/><br><br>
+                    </form>
+                </div>
+                <br>                    
+            </article>	
+                       
+        </section>
+
+    </body>
+</html>
