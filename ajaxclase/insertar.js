@@ -1,5 +1,6 @@
 const finsertar = document.getElementById("finsertar");
 const btn = document.getElementById("btn");
+let mostrar = document.getElementById("mostrar");
 
 btn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -8,8 +9,9 @@ btn.addEventListener("click", (e) => {
         method: "POST",
         body: datosInsertar,
     })
-        .then((resp) => resp.json())
+        .then((resp) => resp.text())
         .then((data) => {
             console.log(data);
+            mostrar.innerHTML = data;
         });
 });

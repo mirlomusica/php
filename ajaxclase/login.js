@@ -1,5 +1,7 @@
 const flogin = document.getElementById("flogin");
 const btn = document.getElementById("btn");
+let mostrar = document.getElementById("mostrar");
+mostrar.innerHTML = "adeu";
 
 btn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -11,5 +13,6 @@ btn.addEventListener("click", (e) => {
         .then((resp) => resp.text())
         .then((data) => {
             console.log(data);
+            mostrar.innerText = data;
         });
 });

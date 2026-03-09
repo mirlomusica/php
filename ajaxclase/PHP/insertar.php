@@ -6,15 +6,15 @@ include_once 'conexion.php'; // Asegúrate de tener este archivo con la conexió
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Recoger los valores del formulario
-    $nombre = $_POST['cajanom']; // Corregido: antes era 'cajanombre'
-    $email = $_POST['cajaemail'];
-    $contrasena = $_POST['cajapass'];
+    $nombre = $_POST['nom']; // Corregido: antes era 'cajanombre'
+    $email = $_POST['email'];
+    $contrasena = $_POST['password'];
 
     // Encriptar la contraseña (recomendado por seguridad)
     //$contrasena_hash = password_hash($contrasena, PASSWORD_DEFAULT);
 
     // SQL con parámetros nombrados (:nom, :email, :contrasena)
-    $sql = "INSERT INTO tusuarios (nomusuario, email, contrasena) VALUES (:nom, :email, :contrasena)";
+    $sql = "INSERT INTO usuarios (nomUsuari, email, contrassenya) VALUES (:nom, :email, :contrasena)";
 
     try {
         // Preparar la consulta
