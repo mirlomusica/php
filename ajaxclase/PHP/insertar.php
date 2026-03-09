@@ -1,23 +1,40 @@
 <?php
-header('Content-Type: application/json');
+// Incluimos los datos de conexión PDO
+include_once 'conexion.php'; // Asegúrate de tener este archivo con la conexión
 
-include 'conexion.php';
+// Verificar que los datos llegaron por POST
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-$user= filter_input(INPUT_POST, "nom");
-$email= filter_input(INPUT_POST, "email");
-$password= filter_input(INPUT_POST, "password");
+    // Recoger los valores del formulario
+    $nombre = $_POST['cajanom']; // Corregido: antes era 'cajanombre'
+    $email = $_POST['cajaemail'];
+    $contrasena = $_POST['cajapass'];
 
-if($_POST["nom"]=="" || $_POST["email"]=="" ||$_POST["password"]==""){
-    echo json_encode("faltan campos");
-    die();
+    // Encriptar la contraseña (recomendado por seguridad)
+    //$contrasena_hash = password_hash($contrasena, PASSWORD_DEFAULT);
+
+    // SQL con parámetros nombrados (:nom, :email, :contrasena)
+    $sql = "INSERT INTO tusuarios (nomusuario, email, contrasena) VALUES (:nom, :email, :contrasena)";
+
+    try {
+        // Preparar la consulta
+        $stmt = $conn->prepare($sql);
+
+        // Vincular los parámetros
+        $stmt->bindParam(':nom', $nombre, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':contrasena', $contrasena, PDO::PARAM_STR);
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        echo "Usuario insertado correctamente. ID: " . $conn->lastInsertId();
+
+    } catch (PDOException $e) {
+        echo "Error al insertar: " . $e->getMessage();
+    }
+
+} else {
+    echo "No se recibieron datos por POST";
 }
-
-
-$sql = "INSERT INTO usuarios (nomUsuari, contrassenya,email) VALUES ('$user', '$password','$email')"; // cambia tabla/campos si quieres
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-
-$resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-echo json_encode($resultado);
 ?>

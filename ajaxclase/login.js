@@ -1,16 +1,15 @@
 const flogin = document.getElementById("flogin");
 const btn = document.getElementById("btn");
-console.log("jdfgjdsfgk");
 
-btn.addEventListener("click", (e)=>{
+btn.addEventListener("click", (e) => {
     e.preventDefault();
-    let datosInsertar = new FormData(flogin)
-    fetch("PHP/login.php",{
-        method: 'POST',
-        body: datosInsertar 
+    let datosInsertar = new FormData(flogin);
+    fetch("PHP/login.php", {
+        method: "POST",
+        body: datosInsertar,
     })
-        .then(resp=>resp.text())
-        .then(data=>{
+        .then((resp) => resp.text())
+        .then((data) => {
             console.log(data);
-        })
-})
+        });
+});
