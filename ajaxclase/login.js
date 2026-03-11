@@ -9,10 +9,11 @@ btn.addEventListener("click", (e) => {
     fetch("PHP/login.php", {
         method: "POST",
         body: datosInsertar,
+        redirect: "follow",
     })
         .then((resp) => resp.text())
         .then((data) => {
-            console.log(data);
-            mostrar.innerText = data;
+            console.log("hola");
+            mostrar.innerHTML = data;
         });
 });
