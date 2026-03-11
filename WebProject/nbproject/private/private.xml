@@ -7,6 +7,8 @@
             <file>file:/opt/lampp/htdocs/WebProject/views/activities/StringsView.html</file>
             <file>file:/opt/lampp/htdocs/WebProject/controllers/controls/Control_Tema2_Controller.php</file>
             <file>file:/opt/lampp/htdocs/WebProject/model/StringFunctions.php</file>
+            <file>file:/opt/lampp/htdocs/WebProject/controllers/activities/BasicOperController.php</file>
+            <file>file:/opt/lampp/htdocs/WebProject/views/activities/Prova.php</file>
         </group>
     </open-files>
 </project-private>

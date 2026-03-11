@@ -10,7 +10,7 @@ class Course extends Product
     protected int $duration;
     protected bool $certification;
 
-    public function __construct($id, $name, $author, $price,$theme,$duration,$certification)
+    public function __construct($id, $name, $author, $price, $theme, $duration, $certification)
     {
         parent::__construct($id, $name, $author, $price);
         $this->theme = $theme;
@@ -18,8 +18,53 @@ class Course extends Product
         $this->certification = $certification;
     }
 
+    public function getTheme(): string
+    {
+        return $this->theme;
+    }
 
-    public function getDetails(): string
+    public function getDuration(): int
+    {
+        return $this->duration;
+    }
+
+    public function getCertification(): bool
+    {
+        return $this->certification;
+    }
+
+    //SETTERS
+
+
+    public function setTheme(string $theme): bool
+    {
+        if(Check::isNull($theme)){
+            return false;
+        }
+        $this->theme = $theme;
+        return true;
+    }
+
+    public function setDuration(int $duration): bool
+    {
+        if(Check::isNull($duration)){
+            return false;
+        }
+        $this->duration = $duration;
+        return true;
+    }
+
+
+    public function setCertification(bool $certification): bool
+    {
+        if(Check::isNull($certification)){
+            return false;
+        }
+        $this->certification = $certification;
+        return true;
+    }
+
+    public function __toString(): string
     {
         return "Course[id: ".$this->id.", "
                 ."name: ".$this->name.", "
