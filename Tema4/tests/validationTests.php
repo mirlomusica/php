@@ -9,6 +9,8 @@ testIsZero();
 testIsNegative();
 testIsPositive();
 testIsBetweenValues();
+testIsValidDni();
+testIsValidEmail();
 
 
 function testIsNull()
@@ -102,3 +104,32 @@ function testIsBetweenValues()
     print "<br>";
 
 }
+
+function testIsValidDni()
+{
+    print "<h1>TEST IsValidDni</h1>";
+
+    print "resultado con dni 12345678A (correcto): ";
+    print Check::IsValidDni("12345678A");
+    print "<br>";
+
+
+    print "resultado con dni R345678A (incorrecto: ";
+    print Check::IsValidDni("R345678A");
+    print "<br>";
+}
+
+function testIsValidEmail()
+{
+    print "<h1>TEST IsValidEmail</h1>";
+
+    print "resultado con email jaume@nuria.com: ";
+    print Check::IsValidEmail("jaume@nuria.com");
+    print "<br>";
+
+
+    print "resultado con email a: ";
+    print Check::IsValidEmail("a");
+    print "<br>";
+}
+

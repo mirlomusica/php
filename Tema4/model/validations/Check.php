@@ -1,5 +1,6 @@
 <?php
 
+
 class Check
 {
     public static function isNull($value): bool
@@ -58,6 +59,31 @@ class Check
         } else {
             return false;
         }
+
+    }
+
+    public static function checkRegex(string $regex, string $password) : bool
+    {
+        $res = "";
+        preg_match($regex, $password, $res);
+        if ($res == []) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public static function isValidDni(string $dni) : bool
+    {
+        return Check::checkRegex("/^[0-9]{8}[A-Z]$/",$dni);
+
+    }
+
+    public static function isValidEmail(string $email) : bool
+    {
+        if (Self::isNull($email)) return false;
+        if (!str_contains($email,"@")) return false;
+        return true;
 
     }
 }
