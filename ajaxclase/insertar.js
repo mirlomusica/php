@@ -13,5 +13,6 @@ btn.addEventListener("click", (e) => {
         .then((data) => {
             console.log(data);
             mostrar.innerHTML = data;
+            window.location.href = "inicio.html";
         });
 });

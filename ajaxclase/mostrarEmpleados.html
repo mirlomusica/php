@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="tabla"></div>
+        <script>
+            let tabladiv = document.getElementById("tabla");
+            fetch("PHP/mostrarEmpleados.php")
+                .then((resp) => resp.json())
+                .then((data) => {
+                    console.log;
+                    table = document.createElement("table");
+                    header = document.createElement("tr");
+
+                    //header per id
+                    idHeader = document.createElement("th");
+                    idHeader.innerText = "Id";
+                    header.appendChild(idHeader);
+
+                    //header per nombres
+                    nombresHeader = document.createElement("th");
+                    nombresHeader.innerText = "nombres";
+                    header.appendChild(nombresHeader);
+
+                    //header per departamento
+                    departamentoHeader = document.createElement("th");
+                    departamentoHeader.innerText = "departamento";
+                    header.appendChild(departamentoHeader);
+
+                    //header per sueldo
+                    sueldoHeader = document.createElement("th");
+                    sueldoHeader.innerText = "sueldo";
+                    header.appendChild(sueldoHeader);
+
+                    table.appendChild(header);
+
+                    data.forEach((empleado) => {
+                        row = document.createElement("tr");
+                        //info per id
+                        id = document.createElement("td");
+                        id.innerText = empleado.idempleado;
+                        row.appendChild(id);
+
+                        //info per nombres
+                        nombres = document.createElement("td");
+                        nombres.innerText = empleado.nombres;
+                        row.appendChild(nombres);
+
+                        //info per departamento
+                        departamento = document.createElement("td");
+                        departamento.innerText = empleado.departamento;
+                        row.appendChild(departamento);
+
+                        //info per sueldo
+                        sueldo = document.createElement("td");
+                        sueldo.innerText = empleado.sueldo;
+                        row.appendChild(sueldo);
+
+                        //botons mod/del
+                        tdButtons = document.createElement("td");
+                        mod = document.createElement("button");
+                        mod.innerText =
+                            "modifica empleado " + empleado.idempleado;
+                        tdButtons.appendChild(mod);
+
+                        del = document.createElement("button");
+                        del.innerText =
+                            "elimina empleado " + empleado.idempleado;
+                        tdButtons.appendChild(del);
+
+                        row.appendChild(tdButtons);
+                        table.appendChild(row);
+                    });
+                    tabladiv.appendChild(table);
+                });
+        </script>
+    </body>
+</html>
