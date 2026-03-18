@@ -12,6 +12,15 @@
         </form>
         <script>
             form = document.getElementById("formid");
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                let formData = new FormData(form);
+                fetch("PHP/getEmpleado.php", { method: "POST", body: formData })
+                    .then((resp) => resp.text())
+                    .then((data) => {
+                        console.log(data);
+                    });
+            });
         </script>
     </body>
 </html>

@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Ejecutar la consulta
         $stmt->execute();
         $empleado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        echo json_encode($empleado)
+        echo json_encode($empleado);
 
     } catch (PDOException $e) {
         echo "Error al pillar el usuario: " . $e->getMessage();
