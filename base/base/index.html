@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Tabla1</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gestión de Registros</h1>
+        
+        <button id="btnInsertar" class="btn btn-insertar">➕ Nuevo Registro</button>
+        
+        <table id="tablaRegistros">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Campo 2</th>
+                    <th>Campo 3</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpoTabla">
+                <!-- Los registros se cargarán aquí -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-contenido">
+            <h2 id="modalTitulo">Nuevo Registro</h2>
+            <form id="formulario">
+                <input type="hidden" id="campo1">
+                <div class="campo-form">
+                    <label>Campo 2:</label>
+                    <input type="text" id="campo2" required>
+                </div>
+                <div class="campo-form">
+                    <label>Campo 3:</label>
+                    <input type="text" id="campo3" required>
+                </div>
+                <div class="botones-form">
+                    <button type="submit" class="btn btn-guardar">Guardar</button>
+                    <button type="button" class="btn btn-cancelar" onclick="cerrarModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
