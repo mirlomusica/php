@@ -7,23 +7,23 @@ include_once __DIR__ . '/Product.php';
 
 class Software extends Product
 {
-    protected int $releaseYear;
+    protected string $releaseDate;
     protected int $serialNumber;
     protected string $compatibleOS;
     protected string $version;
 
-    public function __construct($id, $name, $author, $price, $releaseYear, $serialNumber, $compatibleOS, $version)
+    public function __construct($id, $name, $author, $price, $releaseDate, $serialNumber, $compatibleOS, $version)
     {
         parent::__construct($id, $name, $author, $price);
-        $this->releaseYear = $releaseYear;
+        $this->releaseDate = $releaseDate;
         $this->serialNumber = $serialNumber;
         $this->compatibleOS = $compatibleOS;
         $this->version = $version;
     }
 
-    public function getReleaseYear(): int
+    public function getReleaseDate(): string
     {
-        return $this->releaseYear;
+        return $this->releaseDate;
     }
 
     public function getSerialNumber(): int
@@ -43,18 +43,18 @@ class Software extends Product
 
     //SETTERS
 
-    public function setReleaseYear(int $releaseYear): bool
+    public function setReleaseDate(string $releaseDate): bool
     {
-        if(Check::isNull($releaseYear)){
+        if (Check::isNull($releaseDate) || !Check::isValidDate($releaseDate)) {
             return false;
         }
-        $this->releaseYear = $releaseYear;
+        $this->releaseDate = $releaseDate;
         return true;
     }
 
     public function setSerialNumber(int $serialNumber): bool
     {
-        if(Check::isNull($serialNumber)){
+        if (Check::isNull($serialNumber)) {
             return false;
         }
         $this->serialNumber = $serialNumber;
@@ -63,7 +63,7 @@ class Software extends Product
 
     public function setCompatibleOs(string $compatibleOs): bool
     {
-        if(Check::isNull($compatibleOs)){
+        if (Check::isNull($compatibleOs)) {
             return false;
         }
         $this->compatibleOS =  $compatibleOs;
@@ -72,7 +72,7 @@ class Software extends Product
 
     public function setVersion(string $version): bool
     {
-        if(Check::isNull($version)){
+        if (Check::isNull($version) || !Check::isValidVersion($version)) {
             return false;
         }
         $this->version = $version;
@@ -86,7 +86,7 @@ class Software extends Product
                 ."name: ".$this->name.", "
                 ."author: ".$this->author.", "
                 ."price: ".$this->price.", "
-                ."releaseYear: ".$this->releaseYear.", "
+                ."releaseDate: ".$this->releaseDate.", "
                 ."serialNumber: ".$this->serialNumber.", "
                 ."compatibleOS: ".$this->compatibleOS.", "
                 ."version: ".$this->version

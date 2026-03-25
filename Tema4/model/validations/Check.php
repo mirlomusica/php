@@ -62,7 +62,7 @@ class Check
 
     }
 
-    public static function checkRegex(string $regex, string $password) : bool
+    public static function checkRegex(string $regex, string $password): bool
     {
         $res = "";
         preg_match($regex, $password, $res);
@@ -73,17 +73,26 @@ class Check
         }
     }
 
-    public static function isValidDni(string $dni) : bool
+    public static function isValidDni(string $dni): bool
     {
-        return Check::checkRegex("/^[0-9]{8}[A-Z]$/",$dni);
+        return Check::checkRegex("/^[0-9]{8}[A-Z]$/", $dni);
 
     }
 
-    public static function isValidEmail(string $email) : bool
+    public static function isValidEmail(string $email): bool
     {
-        if (Self::isNull($email)) return false;
-        if (!str_contains($email,"@")) return false;
-        return true;
+        return Check::checkRegex("/^[a-z,.,-,_]*@[a-z,0-9,-]{3,63}.[a-z]{2,4}$/i", $email);
+    }
+
+    public static function isValidVersion(string $version): bool
+    {
+        return Check::checkRegex("/^V.[0-9]{3}.[0-9]{3}.[0-9]{3}/", $version);
 
     }
+
+    public static function isValidDate(string $date): bool
+    {
+        return Check::checkRegex("/[0-9]{4}-[0-9]{2}-[0-9]{2}/", $date);
+    }
+
 }

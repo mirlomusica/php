@@ -131,5 +131,25 @@ function testIsValidEmail()
     print "resultado con email a: ";
     print Check::IsValidEmail("a");
     print "<br>";
+
+    $email ="jaume.estalella@gmail.com";
+    print "resultado con email $email: ";
+    print Check::IsValidEmail($email);
+    print "<br>";
+
+    $email ="jaume-estalella@jaume-estalella.com";
+    print "resultado con email $email: ";
+    print Check::IsValidEmail($email);
+    print "<br>";
+
+    $email ="jaume-estalella@jaume.m";
+    print "resultado con email $email: ";
+    print Check::IsValidEmail($email);
+    print "<br>";
+
+    $email ="jaume-estalella@jaume-estalella.com.com";
+    print "resultado con email $email: ";
+    print Check::IsValidEmail($email);
+    print "<br>";
 }
 
