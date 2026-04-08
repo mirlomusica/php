@@ -56,4 +56,18 @@ function test_create_software(){
     print "setting correct releaseDate '$releaseDate' : $res<br>";
     print "ReleaseDate changed: ".$software->getReleaseDate()."<br>";
 
+    $interval = "P2Y";
+    print "adding interval using new function: ".$interval."<br>";
+    print "Date with added interval: ".$software->getConfigReleaseDate($interval)."<br>";
+
+    $times = 10;
+    print "Date with added interval multiple times: ";
+    $intervals = $software->getDatePeriods($interval, $times);
+    foreach($intervals as $interval){
+        print $interval ."<br>";
+    }
+
+    print "ReleaseDate unchanged: ".$software->getReleaseDate()."<br>";
+
 }
+

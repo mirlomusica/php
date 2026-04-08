@@ -11,6 +11,7 @@ testIsPositive();
 testIsBetweenValues();
 testIsValidDni();
 testIsValidEmail();
+testIsValidDate();
 
 
 function testIsNull()
@@ -153,3 +154,28 @@ function testIsValidEmail()
     print "<br>";
 }
 
+function testIsValidDate(){
+
+    print "<h1>TEST IsValidDate</h1>";
+
+    $date = "12-12-2012";
+    print "resultado con date $date: ";
+    print (int)Check::isValidDate($date);
+    print "<br>";
+
+    $date = "treintayuno de junio";
+    print "resultado con date $date: ";
+    print (int)Check::isValidDate($date);
+    print "<br>";
+
+    $date = "45-12-2012";
+    print "resultado con date $date: ";
+    print (int)Check::isValidDate($date);
+    print "<br>";
+
+    $date = "30-02-2012";
+    print "resultado con date $date: ";
+    print (int)Check::isValidDate($date);
+    print "<br>";
+
+}

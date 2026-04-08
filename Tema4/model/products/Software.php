@@ -7,7 +7,7 @@ include_once __DIR__ . '/Product.php';
 
 class Software extends Product
 {
-    protected string $releaseDate;
+    protected DateTime $releaseDate;
     protected int $serialNumber;
     protected string $compatibleOS;
     protected string $version;
@@ -15,7 +15,7 @@ class Software extends Product
     public function __construct($id, $name, $author, $price, $releaseDate, $serialNumber, $compatibleOS, $version)
     {
         parent::__construct($id, $name, $author, $price);
-        $this->releaseDate = $releaseDate;
+        $this->releaseDate = new DateTime($releaseDate);
         $this->serialNumber = $serialNumber;
         $this->compatibleOS = $compatibleOS;
         $this->version = $version;
@@ -23,7 +23,7 @@ class Software extends Product
 
     public function getReleaseDate(): string
     {
-        return $this->releaseDate;
+        return $this->releaseDate->format("d-m-Y");
     }
 
     public function getSerialNumber(): int
@@ -48,8 +48,9 @@ class Software extends Product
         if (Check::isNull($releaseDate) || !Check::isValidDate($releaseDate)) {
             return false;
         }
-        $this->releaseDate = $releaseDate;
+        $this->releaseDate = new DateTime($releaseDate);
         return true;
+
     }
 
     public function setSerialNumber(int $serialNumber): bool
@@ -86,10 +87,28 @@ class Software extends Product
                 ."name: ".$this->name.", "
                 ."author: ".$this->author.", "
                 ."price: ".$this->price.", "
-                ."releaseDate: ".$this->releaseDate.", "
+                ."releaseDate: ".$this->releaseDate->format("d-m-Y").", "
                 ."serialNumber: ".$this->serialNumber.", "
                 ."compatibleOS: ".$this->compatibleOS.", "
                 ."version: ".$this->version
                 ."]";
+    }
+
+    public function getConfigReleaseDate(string $intervalString): string{
+        $interval = new DateInterval($intervalString);
+        $newDate = clone $this->releaseDate;
+        return $newDate->add($interval)->format("d-m-Y");
+    }
+    public function getDatePeriods(string $intervalString, int $times): array{
+
+        $interval = new DateInterval($intervalString);
+        $res =[$this->releaseDate->format("d-m-Y")];
+        $current = clone $this->releaseDate;
+
+        for($i = 0; $i<$times; $i++){
+           $current = $current->add($interval); 
+            $res[] = $current->format("d-m-Y");
+        }
+        return $res;
     }
 }

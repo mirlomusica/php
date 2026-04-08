@@ -92,7 +92,15 @@ class Check
 
     public static function isValidDate(string $date): bool
     {
-        return Check::checkRegex("/[0-9]{4}-[0-9]{2}-[0-9]{2}/", $date);
+        $match = [];
+        preg_match("/([0-9]{2})-([0-9]{2})-([0-9]{4})/", $date, $match);
+        if (count($match) != 4) {
+            return false;
+        }
+        $day = (int) $match[1];
+        $month = (int) $match[2];
+        $year =  (int) $match[3];
+        return checkdate($month,$day,$year);
     }
 
 }
