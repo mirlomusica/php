@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+    </head>
+    <body>
+        <table id="table">
+            
+        </table>
+
+        <script>
+            let table = document.getElementById("table");
+            fetch("PHP/api.php")
+                .then(resp=>resp.json())
+                .then(data=>{
+                    console.log(data);
+
+
+                    //headers
+                    let first = data[0];
+                    let keys= Object.keys(first);
+                    console.log(keys);
+                })
+        </script>
+    
+    </body>
+</html>

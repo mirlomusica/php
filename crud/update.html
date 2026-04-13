@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Socis Form</title>
+</head>
+<body>
+
+  <h2>Nou Soci</h2>
+
+  <form action="/api/socis" method="POST">
+
+    <label for="nom">Nom:</label><br>
+    <input type="text" id="nom" name="nom" maxlength="100" required><br><br>
+
+    <label for="cognoms">Cognoms:</label><br>
+    <input type="text" id="cognoms" name="cognoms" maxlength="150" required><br><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" maxlength="100" required><br><br>
+
+    <label for="telefon">Telèfon:</label><br>
+    <input type="text" id="telefon" name="telefon" maxlength="15"><br><br>
+
+    <label for="data_naixement">Data de naixement:</label><br>
+    <input type="date" id="data_naixement" name="data_naixement"><br><br>
+
+    <label for="data_alta">Data d'alta:</label><br>
+    <input type="date" id="data_alta" name="data_alta"><br><br>
+
+    <label for="data_baixa">Data de baixa:</label><br>
+    <input type="date" id="data_baixa" name="data_baixa"><br><br>
+
+    <label for="adreca">Adreça:</label><br>
+    <textarea id="adreca" name="adreca"></textarea><br><br>
+
+    <label for="dni">DNI:</label><br>
+    <input type="text" id="dni" name="dni" maxlength="9"><br><br>
+
+    <label for="tipus_quota">Tipus de quota:</label><br>
+    <select id="tipus_quota" name="tipus_quota">
+      <option value="basic">Basic</option>
+      <option value="standard">Standard</option>
+      <option value="premium">Premium</option>
+    </select><br><br>
+
+    <label for="quota_mensual">Quota mensual:</label><br>
+    <input type="number" id="quota_mensual" name="quota_mensual" step="0.01"><br><br>
+
+    <label for="actiu">Actiu:</label>
+    <input type="checkbox" id="actiu" name="actiu" checked><br><br>
+
+    <label for="observacions">Observacions:</label><br>
+    <textarea id="observacions" name="observacions"></textarea><br><br>
+
+    <button type="submit">Guardar</button>
+
+  </form>
+
+</body>
+</html>
+    
+    </body>
+</html>
