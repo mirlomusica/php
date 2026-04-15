@@ -90,17 +90,41 @@ class Check
 
     }
 
-    public static function isValidDate(string $date): bool
+    public static function isValidDate(string $date): int
     {
         $match = [];
-        preg_match("/([0-9]{2})-([0-9]{2})-([0-9]{4})/", $date, $match);
+        preg_match("/^([0-9]{2})-([0-9]{2})-([0-9]{4})$/", $date, $match);
         if (count($match) != 4) {
-            return false;
+            return -1;
         }
         $day = (int) $match[1];
         $month = (int) $match[2];
         $year =  (int) $match[3];
-        return checkdate($month,$day,$year);
+        if ($year < 1980 or $year > 2030) {
+            return -7;
+        }
+
+        if ($month < 1 or $month > 12) {
+            return -8;
+        }
+        if (!checkdate($month, $day, $year)) {
+            return -9;
+        }
+        return 0;
+    }
+
+    public static function errorMessage(int $error): string
+    {
+        switch ($error) {
+            case 0: return "no error";
+            case -1: return "format de data incorrecte";
+            case -7: return "any fora del rang acceptat";
+            case -8: return "mes incorrecte";
+            case -9: return "dia fora del rang del mes";
+                defalut : return "unkown error";
+        }
+            return "unkown error";
     }
 
 }
+

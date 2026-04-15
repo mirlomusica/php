@@ -45,7 +45,7 @@ class Software extends Product
 
     public function setReleaseDate(string $releaseDate): bool
     {
-        if (Check::isNull($releaseDate) || !Check::isValidDate($releaseDate)) {
+        if (Check::isNull($releaseDate) || Check::isValidDate($releaseDate)!=0) {
             return false;
         }
         $this->releaseDate = new DateTime($releaseDate);

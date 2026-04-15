@@ -12,6 +12,7 @@ testIsBetweenValues();
 testIsValidDni();
 testIsValidEmail();
 testIsValidDate();
+testErrorMessage();
 
 
 function testIsNull()
@@ -176,6 +177,42 @@ function testIsValidDate(){
     $date = "30-02-2012";
     print "resultado con date $date: ";
     print (int)Check::isValidDate($date);
+    print "<br>";
+
+}
+
+function testErrorMessage(){
+    
+    print "<h1>TEST testErrorMessage()</h1>";
+
+    $error = 0;
+    print "resultado con error $error: ";
+    print Check::errorMessage($error);
+    print "<br>";
+
+    $error = -1;
+    print "resultado con error $error: ";
+    print Check::errorMessage($error);
+    print "<br>";
+
+    $error = -2;
+    print "resultado con error $error: ";
+    print Check::errorMessage($error);
+    print "<br>";
+    
+    $error = -7;
+    print "resultado con error $error: ";
+    print Check::errorMessage($error);
+    print "<br>";
+
+    $error = -8;
+    print "resultado con error $error: ";
+    print Check::errorMessage($error);
+    print "<br>";
+
+    $error = -9;
+    print "resultado con error $error: ";
+    print Check::errorMessage($error);
     print "<br>";
 
 }

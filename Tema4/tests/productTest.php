@@ -46,12 +46,13 @@ function test_create_software(){
 
     print "<h2>Date regex check</h2>";
 
-    $releaseDate = "12-12-2012";
+    $releaseDate = "2012-12-12";
+
     $res = $software->setReleaseDate($releaseDate);
     print "setting incorrect releaseDate '$releaseDate' : $res<br>";
     print "ReleaseDate unchanged: ".$software->getReleaseDate()."<br>";
 
-    $releaseDate = "2012-12-12";
+    $releaseDate = "12-12-2012";
     $res = $software->setReleaseDate($releaseDate);
     print "setting correct releaseDate '$releaseDate' : $res<br>";
     print "ReleaseDate changed: ".$software->getReleaseDate()."<br>";
