@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function cargarRegistros() {
+
     fetch('api.php?operacion=obtener')
         .then(response => response.json())
         .then(data => {
@@ -75,6 +76,7 @@ function editarRegistro(id, campo2, campo3) {
 }
 
 function borrarRegistro(id) {
+
     if (confirm('¿Estás seguro de que quieres borrar este registro?')) {
         const formData = new FormData();
         formData.append('operacion', 'borrar');

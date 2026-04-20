@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+</head>
+
+<body>
+
+        <button type="" id="create">crear</button>
+        <button type="" id="read">leer</button>
+
+    <script>
+        console.log("hola");
+        document.cookie = "color=green ;path=/";
+        document.cookie = "user=jaume;path=/";
+        console.log(document.cookie);
+        setCookie("pepe", "pepe", 12);
+        console.log(getCookie("pepe"));
+        
+        let create = document.getElementById("create");
+        create.addEventListener("click",function(){
+            const cname = prompt("nombre cookie");
+            const cvalue = prompt("valor cookie");
+            const exDays = prompt("dias expiración");
+            console.log("hola");
+            setCookie(cname,cvalue,exDays);
+        });
+
+        let read = document.getElementById("read");
+
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+    </script>
+
+</body>
+
+</html>

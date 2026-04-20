@@ -1,29 +1,556 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title></title>
-    </head>
-    <body>
-        <table id="table">
-            
-        </table>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestió de Socis</title>
+  <style>
+    :root {
+      --bg: #1a1a2e;
+      --surface: #16213e;
+      --surface2: #0f3460;
+      --accent: #e94560;
+      --accent2: #f5a623;
+      --text: #eaeaea;
+      --text-muted: #888;
+      --border: #2a2a4a;
+      --success: #27ae60;
+      --danger: #e74c3c;
+      --radius: 8px;
+    }
 
-        <script>
-            let table = document.getElementById("table");
-            fetch("PHP/api.php")
-                .then(resp=>resp.json())
-                .then(data=>{
-                    console.log(data);
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+    }
 
-                    //headers
-                    let first = data[0];
-                    let keys= Object.keys(first);
-                    console.log(keys);
-                })
-        </script>
-    
-    </body>
+    header {
+      background: var(--surface);
+      border-bottom: 2px solid var(--accent);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 {
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+      color: var(--accent);
+    }
+
+    .btn {
+      padding: .5rem 1.2rem;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: .9rem;
+      font-weight: 600;
+      transition: opacity .2s;
+    }
+    .btn:hover { opacity: .85; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-secondary { background: var(--surface2); color: var(--text); }
+    .btn-danger { background: var(--danger); color: #fff; }
+    .btn-sm { padding: .3rem .7rem; font-size: .8rem; }
+
+    .toolbar {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 2rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .toolbar input, .toolbar select {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: .5rem .8rem;
+      border-radius: var(--radius);
+      font-size: .9rem;
+    }
+
+    .toolbar input { flex: 1; min-width: 200px; }
+
+    .table-wrap {
+      padding: 0 2rem 2rem;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    thead { background: var(--surface2); }
+    th, td { padding: .75rem 1rem; text-align: left; font-size: .88rem; border-bottom: 1px solid var(--border); }
+    th { color: var(--accent2); font-weight: 700; white-space: nowrap; }
+    tr:hover td { background: rgba(255,255,255,.03); }
+
+    .badge {
+      display: inline-block;
+      padding: .2rem .6rem;
+      border-radius: 20px;
+      font-size: .75rem;
+      font-weight: 700;
+    }
+    .badge-actiu { background: rgba(39,174,96,.2); color: #2ecc71; }
+    .badge-inactiu { background: rgba(231,76,60,.2); color: #e74c3c; }
+
+    .actions { display: flex; gap: .4rem; }
+
+    .pagination {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: 1rem 2rem;
+      justify-content: flex-end;
+      font-size: .9rem;
+    }
+    .pagination span { color: var(--text-muted); }
+
+    /* Modal */
+    .backdrop {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.6);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+    .backdrop.open { display: flex; }
+
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      width: min(600px, 95vw);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal h2 { margin-bottom: 1.2rem; color: var(--accent); font-size: 1.1rem; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .8rem;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: .3rem; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    label { font-size: .8rem; color: var(--text-muted); }
+
+    input, select, textarea {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: .5rem .8rem;
+      border-radius: var(--radius);
+      font-size: .9rem;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    input.error, select.error { border-color: var(--danger); }
+
+    .field-error { font-size: .75rem; color: var(--danger); min-height: 1rem; }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: .8rem;
+      margin-top: 1.4rem;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      padding: .8rem 1.4rem;
+      border-radius: var(--radius);
+      font-size: .9rem;
+      font-weight: 600;
+      z-index: 200;
+      opacity: 0;
+      transition: opacity .3s;
+      pointer-events: none;
+    }
+    #toast.show { opacity: 1; }
+    #toast.ok { background: var(--success); color: #fff; }
+    #toast.err { background: var(--danger); color: #fff; }
+
+    /* Spinner */
+    #spinner {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.4);
+      z-index: 300;
+      align-items: center;
+      justify-content: center;
+    }
+    #spinner.show { display: flex; }
+    .spin {
+      width: 48px; height: 48px;
+      border: 4px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 600px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .toolbar { flex-direction: column; }
+      header { flex-direction: column; gap: .6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>&#127947; Gestió de Socis</h1>
+  <button class="btn btn-primary" onclick="openModal()">+ Nou soci</button>
+</header>
+
+<div class="toolbar">
+  <input type="text" id="search" placeholder="Cerca per nom, email, DNI..." oninput="filterTable()">
+  <select id="filterStatus" onchange="filterTable()">
+    <option value="">Tots</option>
+    <option value="1">Actiu</option>
+    <option value="0">Inactiu</option>
+  </select>
+</div>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom complet</th>
+        <th>Email</th>
+        <th>Telèfon</th>
+        <th>DNI</th>
+        <th>Tipus quota</th>
+        <th>Quota</th>
+        <th>Estat</th>
+        <th>Accions</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+</div>
+
+<div class="pagination">
+  <button class="btn btn-secondary btn-sm" id="prevBtn" onclick="renderPage(currentPage-1)">&#8592;</button>
+  <span id="pageInfo"></span>
+  <button class="btn btn-secondary btn-sm" id="nextBtn" onclick="renderPage(currentPage+1)">&#8594;</button>
+</div>
+
+<!-- Modal -->
+<div class="backdrop" id="backdrop" onclick="closeModal(event)">
+  <div class="modal">
+    <h2 id="modalTitle">Nou soci</h2>
+    <form id="socForm" onsubmit="saveForm(event)">
+      <input type="hidden" id="socId">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Nom *</label>
+          <input type="text" id="nom">
+          <span class="field-error" id="err-nom"></span>
+        </div>
+        <div class="form-group">
+          <label>Cognoms *</label>
+          <input type="text" id="cognoms">
+          <span class="field-error" id="err-cognoms"></span>
+        </div>
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" id="email">
+          <span class="field-error" id="err-email"></span>
+        </div>
+        <div class="form-group">
+          <label>Telèfon</label>
+          <input type="text" id="telefon">
+        </div>
+        <div class="form-group">
+          <label>DNI</label>
+          <input type="text" id="dni" placeholder="12345678A">
+          <span class="field-error" id="err-dni"></span>
+        </div>
+        <div class="form-group">
+          <label>Data naixement</label>
+          <input type="date" id="data_naixement">
+        </div>
+        <div class="form-group">
+          <label>Tipus quota</label>
+          <select id="tipus_quota">
+            <option value="basic">Basic</option>
+            <option value="standard">Standard</option>
+            <option value="premium">Premium</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Quota mensual (€)</label>
+          <input type="number" step="0.01" id="quota_mensual">
+        </div>
+        <div class="form-group">
+          <label>Estat</label>
+          <select id="actiu">
+            <option value="1">Actiu</option>
+            <option value="0">Inactiu</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Adreça</label>
+          <input type="text" id="adreca">
+        </div>
+        <div class="form-group full">
+          <label>Observacions</label>
+          <textarea id="observacions" rows="2"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel·lar</button>
+        <button type="submit" class="btn btn-primary">Desar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="toast"></div>
+<div id="spinner"><div class="spin"></div></div>
+
+<script>
+const API = 'PHP/api.php';
+const PAGE_SIZE = 10;
+
+let allSocis = [];
+let filtered = [];
+let currentPage = 1;
+
+// ── Data ──────────────────────────────────────────────────────────────────────
+
+async function loadSocis() {
+  showSpinner(true);
+  try {
+    const res = await fetch(API);
+    const json = await res.json();
+    if (!json.success) throw new Error(json.error);
+    allSocis = json.data;
+    filterTable();
+  } catch (e) {
+    showToast('Error carregant dades: ' + e.message, false);
+  } finally {
+    showSpinner(false);
+  }
+}
+
+// ── Filter & Render ───────────────────────────────────────────────────────────
+
+function filterTable() {
+  const q = document.getElementById('search').value.toLowerCase();
+  const status = document.getElementById('filterStatus').value;
+  filtered = allSocis.filter(s => {
+    const matchText = !q ||
+      (s.nom + ' ' + s.cognoms).toLowerCase().includes(q) ||
+      (s.email || '').toLowerCase().includes(q) ||
+      (s.dni || '').toLowerCase().includes(q);
+    const matchStatus = status === '' || String(s.actiu) === status;
+    return matchText && matchStatus;
+  });
+  currentPage = 1;
+  renderPage(1);
+}
+
+function renderPage(n) {
+  const total = Math.ceil(filtered.length / PAGE_SIZE) || 1;
+  n = Math.max(1, Math.min(n, total));
+  currentPage = n;
+
+  const slice = filtered.slice((n - 1) * PAGE_SIZE, n * PAGE_SIZE);
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = slice.length
+    ? slice.map(rowHTML).join('')
+    : '<tr><td colspan="9" style="text-align:center;color:var(--text-muted);padding:2rem">Sense resultats</td></tr>';
+
+  document.getElementById('pageInfo').textContent = `Pàgina ${n} / ${total}  (${filtered.length} socis)`;
+  document.getElementById('prevBtn').disabled = n <= 1;
+  document.getElementById('nextBtn').disabled = n >= total;
+}
+
+function rowHTML(s) {
+  const estat = s.actiu
+    ? '<span class="badge badge-actiu">Actiu</span>'
+    : '<span class="badge badge-inactiu">Inactiu</span>';
+  const quota = s.quota_mensual != null ? s.quota_mensual + ' €' : '—';
+  return `<tr>
+    <td>${s.id}</td>
+    <td>${esc(s.nom)} ${esc(s.cognoms)}</td>
+    <td>${esc(s.email)}</td>
+    <td>${esc(s.telefon || '—')}</td>
+    <td>${esc(s.dni || '—')}</td>
+    <td>${esc(s.tipus_quota || '—')}</td>
+    <td>${quota}</td>
+    <td>${estat}</td>
+    <td class="actions">
+      <button class="btn btn-secondary btn-sm" onclick="openModal(${s.id})">Edita</button>
+      <button class="btn btn-danger btn-sm" onclick="deleteSoci(${s.id})">Elimina</button>
+    </td>
+  </tr>`;
+}
+
+// ── Modal ─────────────────────────────────────────────────────────────────────
+
+function openModal(id) {
+  clearForm();
+  document.getElementById('backdrop').classList.add('open');
+  if (id) {
+    document.getElementById('modalTitle').textContent = 'Editar soci';
+    const s = allSocis.find(x => x.id === id);
+    if (!s) return;
+    document.getElementById('socId').value = s.id;
+    ['nom','cognoms','email','telefon','dni','data_naixement','tipus_quota','quota_mensual','actiu','adreca','observacions']
+      .forEach(f => {
+        const el = document.getElementById(f);
+        if (el) el.value = s[f] ?? '';
+      });
+  } else {
+    document.getElementById('modalTitle').textContent = 'Nou soci';
+  }
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('backdrop')) return;
+  document.getElementById('backdrop').classList.remove('open');
+}
+
+function clearForm() {
+  document.getElementById('socForm').reset();
+  document.getElementById('socId').value = '';
+  ['nom','cognoms','email','dni'].forEach(clearError);
+}
+
+// ── Save ──────────────────────────────────────────────────────────────────────
+
+async function saveForm(e) {
+  e.preventDefault();
+  if (!validateForm()) return;
+
+  const id = document.getElementById('socId').value;
+  const body = {};
+  ['nom','cognoms','email','telefon','dni','data_naixement','tipus_quota','quota_mensual','actiu','adreca','observacions']
+    .forEach(f => { body[f] = document.getElementById(f).value; });
+
+  const url = id ? `${API}?id=${id}` : API;
+  const method = id ? 'PUT' : 'POST';
+
+  showSpinner(true);
+  try {
+    const res = await fetch(url, {
+      method,
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(body)
+    });
+    const json = await res.json();
+    if (!json.success) throw new Error(json.error);
+    document.getElementById('backdrop').classList.remove('open');
+    showToast(id ? 'Soci actualitzat' : 'Soci creat', true);
+    await loadSocis();
+  } catch (err) {
+    showToast('Error: ' + err.message, false);
+  } finally {
+    showSpinner(false);
+  }
+}
+
+// ── Delete ────────────────────────────────────────────────────────────────────
+
+async function deleteSoci(id) {
+  if (!confirm('Eliminar aquest soci?')) return;
+  showSpinner(true);
+  try {
+    const res = await fetch(`${API}?id=${id}`, { method: 'DELETE' });
+    const json = await res.json();
+    if (!json.success) throw new Error(json.error);
+    showToast('Soci eliminat', true);
+    await loadSocis();
+  } catch (err) {
+    showToast('Error: ' + err.message, false);
+  } finally {
+    showSpinner(false);
+  }
+}
+
+// ── Validation ────────────────────────────────────────────────────────────────
+
+function validateForm() {
+  let ok = true;
+  ['nom','cognoms','email'].forEach(f => {
+    const val = document.getElementById(f).value.trim();
+    if (!val) { setError(f, 'Camp obligatori'); ok = false; }
+    else clearError(f);
+  });
+
+  const email = document.getElementById('email').value.trim();
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    setError('email', 'Format invàlid'); ok = false;
+  }
+
+  const dni = document.getElementById('dni').value.trim();
+  if (dni && !/^\d{8}[A-Za-z]$/.test(dni)) {
+    setError('dni', 'Format invàlid (8 dígits + lletra)'); ok = false;
+  }
+
+  return ok;
+}
+
+function setError(field, msg) {
+  const el = document.getElementById(field);
+  if (el) el.classList.add('error');
+  const err = document.getElementById('err-' + field);
+  if (err) err.textContent = msg;
+}
+
+function clearError(field) {
+  const el = document.getElementById(field);
+  if (el) el.classList.remove('error');
+  const err = document.getElementById('err-' + field);
+  if (err) err.textContent = '';
+}
+
+// ── UI helpers ────────────────────────────────────────────────────────────────
+
+function showToast(msg, ok) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show ' + (ok ? 'ok' : 'err');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function showSpinner(on) {
+  document.getElementById('spinner').classList.toggle('show', on);
+}
+
+function esc(s) {
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+loadSocis();
+</script>
+</body>
 </html>
