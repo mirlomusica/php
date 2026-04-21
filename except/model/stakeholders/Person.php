@@ -3,9 +3,8 @@
 
 
 include_once(__DIR__."/../validations/Check.php");
-include_once(__DIR__."/../exceptions/BuildException.php");
 
-abstract class Person
+class Person
 {
     protected int $ident;
     protected string $name ;
@@ -13,31 +12,14 @@ abstract class Person
     protected string $provincia ;
     protected string $poblacio ;
 
-
-    protected function checkParameters(int $ident, string $name, string $email, string $provincia, string $poblacio): void
+    public function __construct(int $ident,string $name, string $email, string $provincia, string $poblacio)
     {
-        $err = "";
-        if ($this->setIdent($ident) == false) {
-            $err .= "ident no vàlid,";
-        }
-        if ($this->setProvincia($provincia) == false) {
-            $err .= "Provincia no vàlida,";
-        }
-        if ($this->setName($name) == false) {
-            $err .= "Nom no vàlid,";
-        }
-        if ($this->setEmail($email) == false) {
-            $err .= "Email no vàlid,";
-        }
-        if ($this->setPoblacio($poblacio) == false) {
-            $err .= "Població no vàlida,";
-        }
-        if ($err) {
-            throw new BuildException($err);
-        }
-
+        $this->ident = $ident;
+        $this->provincia = $provincia;
+        $this->name = $name;
+        $this->email = $email;
+        $this->poblacio = $poblacio;
     }
-
 
     public function getIdent(): int
     {
@@ -66,7 +48,7 @@ abstract class Person
 
     public function setIdent(int $ident): bool
     {
-        if (Check::isNull($ident)) {
+        if(Check::isNull($ident)){
             return false;
         }
         $this->ident = $ident;
@@ -75,7 +57,7 @@ abstract class Person
 
     public function setProvincia(string $provincia): bool
     {
-        if (Check::isNull($provincia)) {
+        if(Check::isNull($provincia)){
             return false;
         }
         $this->provincia = $provincia;
@@ -84,7 +66,7 @@ abstract class Person
 
     public function setName(string $name): bool
     {
-        if (Check::isNull($name)) {
+        if(Check::isNull($name)){
             return false;
         }
         $this->name = $name;
@@ -93,7 +75,7 @@ abstract class Person
 
     public function setEmail(string $email): bool
     {
-        if (!Check::isValidEmail($email)) {
+        if(!Check::isValidEmail($email)){
             return false;
         }
         $this->email = $email;
@@ -101,7 +83,7 @@ abstract class Person
     }
     public function setPoblacio(string $poblacio): bool
     {
-        if (Check::isNull($poblacio)) {
+        if(Check::isNull($poblacio)){
             return false;
         }
         $this->poblacio = $poblacio;

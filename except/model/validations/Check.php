@@ -5,7 +5,7 @@ class Check
 {
     public static function isNull($value): bool
     {
-        if ($value === null || $value == "") {
+        if ($value === null) {
             return true;
         } else {
             return false;

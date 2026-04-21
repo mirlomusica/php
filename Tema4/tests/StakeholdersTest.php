@@ -5,8 +5,23 @@ include_once(__DIR__."/../model/stakeholders/Partner.php");
 include_once(__DIR__."/../model/stakeholders/Sponsor.php");
 include_once(__DIR__."/../model/stakeholders/Stakeholder.php");
 include_once(__DIR__."/../model/stakeholders/Employee.php");
+include_once(__DIR__."/../model/exceptions/BuildException.php");
 
 testClient();
+
+print "<br><br>Pruebas try/catch constructor<br><br>";
+
+try{
+$ident = 1;
+$name = "jaume";
+$email = "jaume@gomail.com";
+$prov = "Barna";
+$poblacio = "gava";
+    $person = new Person($ident,$name,$email,$prov,$poblacio);
+}catch (BuildException $ex){
+    print "Error". $ex->getMessage();
+
+}
 
 print "<br><br>Creación de un Sponsor<br><br>";
 $sponsor = new Sponsor(1,"n1", "m1@mail.com", "p1", "pob1", 10000);
