@@ -44,7 +44,7 @@ abstract class Person
         return $this->ident;
     }
 
-    public function getProvincia(): int
+    public function getProvincia(): string
     {
         return $this->provincia;
     }
