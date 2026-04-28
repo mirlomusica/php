@@ -7,8 +7,13 @@ form.addEventListener("submit", (e) => {
         body : new FormData(form),
         method: "POST"
     })
-        .then(resp => resp.text())
+        .then(resp => resp.json())
         .then(data=>{
-          msg.innerHTML = data;
+            if(data.status == "error"){
+                msg.style.color = "red";
+            }else{
+                msg.style.color = "black";
+            }
+          msg.innerHTML = data.msg;
         });
 })

@@ -1,6 +1,7 @@
 <?php
 
 include_once(__DIR__."/../validations/Check.php");
+include_once(__DIR__."/../exceptions/BuildException.php");
 
 abstract class Product
 {
@@ -9,12 +10,27 @@ abstract class Product
     protected string $author;
     protected float $price;
 
-    public function __construct(int $id, string $name, string $author, float $price)
+    public function checkParameters(int $id, string $name, string $author, float $price) : void
     {
-        $this->id = $id;
-        $this->name = $name;
+        $msg = "";
+        if (!$this->setId($id)){
+            $msg .= "id incorrecta, ";
+        }
+        if (!$this->setName($name)){
+            $msg .="nom incorrecte, ";
+        }
         $this->author = $author;
+
+        if (!$this->setAuthor($author)){
+            $msg .="Autor incorrecte, ";
+        }
         $this->price = $price;
+        if (!$this->setPrice($price)){
+            $msg .= "preu incorrecte, ";
+        }
+        if ($msg){
+            throw new BuildException($msg);
+        }
     }
 
 
@@ -38,9 +54,10 @@ abstract class Product
         return $this->price;
     }
 
-    public function setId(int $id): void
+    public function setId(int $id): bool
     {
         $this->id = $id;
+        return true;
     }
 
 
@@ -67,7 +84,7 @@ abstract class Product
     public function setPrice(float $price): bool
     {
 
-        if (Check::isNull($price)) {
+        if (Check::isNull($price)||Check::isNegative($price)) {
             return false;
         }
         $this->price = $price;
