@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Carga cuadros combinados</h1>
+        <select name="cajacomunitat" id="cajacomunitat">
+            <option value="0">Selecciona Comunitat</option>
+        </select>
+
+        <script>
+            let cajacomunitat = document.getElementById("cajacomunitat");
+            let comunitats = new Array();
+            fetch("comunitats.php")
+                .then((resp) => resp.json())
+                .then((data) => {
+                    console.log(data);
+                    data.forEach((element) => {
+                        comunitats.push(element.comunitat);
+                    });
+                    console.log(comunitats);
+                    comunitats.forEach((comunitat) => {
+                        let option = document.createElement("option");
+                        option.value = comunitat.id_com;
+                        option.innerHTML = comunitat;
+                        cajacomunitat.appendChild(option);
+                    });
+                });
+        </script>
+    </body>
+</html>

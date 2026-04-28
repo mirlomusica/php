@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Carga cuadros combinados</h1>
+        <select name="cajacomunitat" id="cajacomunitat">
+            <option value="0">Selecciona Comunitat</option>
+        </select>
+
+        <script>
+            let cajacomunitat = document.getElementById("cajacomunitat");
+            let comunitats = new Array();
+            fetch("comunitats_backend.php")
+                .then((resp) => resp.text())
+                .then((data) => {
+                    cajacomunitat.innerHTML = data;
+                });
+        </script>
+    </body>
+</html>
