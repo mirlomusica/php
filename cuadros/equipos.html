@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+    </head>
+    <body>
+        <form id="form">
+            <input type="submit" name="submit" value="submit">
+        </form>
+        <script>
+            let form = document.getElementById("form");
+            fetch("equipos.php")
+                .then(resp=>resp.json())
+                .then(data => {
+                    data.forEach(equipo =>{
+                        console.log(data);
+                        form.innerHTML += "<input type='radio' name='equipos' value='"+equipo.idequipo+"'>"+equipo.nombre+"</input>";
+                    })
+                })
+            form.addEventListener("submit",(e)=>{
+                e.preventDefault();
+                
+            })
+        </script>
+        <style>
+            form{
+                display: flex;
+                flex-direction: column;
+            }
+        
+        </style>
+    
+    </body>
+</html>
