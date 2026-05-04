@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+    </head>
+    <body>
+        <button id="btn">Cargar Datos</button>
+        <div id="mostrar">
+            
+        </div>
+    
+        <script>
+            let btn =document.getElementById("btn");
+            let mostrar = document.getElementById("mostrar");
+            btn.addEventListener("click",()=>{
+                fetch("servidor.php")
+                    .then(resp=>resp.json())
+                    .then(data=>{
+                        console.log(data);
+                        mostrar.innerHTML = `status: ${data.status}<br>mensaje: ${data.mensaje}<br>datos:<br>`
+                        let datos = "";
+                        data.items.forEach((item)=>{
+                            datos +=item + "<br>";
+                        })
+                        mostrar.innerHTML +=datos;
+                    });
+            });
+
+        </script>
+    </body>
+</html>
