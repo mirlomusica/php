@@ -6,7 +6,7 @@
  * CODI MOLT MILLORABLE AMB MODULARITZACIO I PATRONS DE DISSENY
  */
 $host = 'localhost';
-$db = 'infobooks';
+$db = 'infolib';
 $charset = 'utf8mb4';
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 
@@ -22,7 +22,7 @@ try {
     $pdo = new PDO($dsn, $user, $pass, $options);
     print "Conexión correcta";
     print "<br>-----------------------------------<br><br>";
-    $sql = "SELECT id_client, nom, cognom, email, provincia, poblacio FROM clients";
+    $sql = "SELECT id_client, nom, cognom, email, provincia, poblacio FROM Clients";
     $stmt = $pdo->query($sql);
 
     if (($numRows = $stmt->rowCount()) > 0) {
@@ -39,9 +39,9 @@ try {
 
 
     $sqlTest = "SELECT id_client, nom, cognom, email, provincia, poblacio "
-            . "FROM clients WHERE id_client = 101";
+            . "FROM Clients WHERE id_client = 101";
 
-    $sql = "INSERT INTO clients VALUES
+    $sql = "INSERT INTO Clients VALUES
             (101,'Felix','Del Val','felixdv@example.com','Barcelona','Gava');";
     $rows = $pdo->exec($sql);
     print "<br>-------ROWS AFFECTEDS : $rows --------------<br>";
@@ -60,7 +60,7 @@ try {
         print "<br>------- NOT FOUND ANY ROWS --------------<br><br>";
     }
 
-    $sql = "UPDATE clients SET poblacio = 'Castelldefells' WHERE id_client=101;";
+    $sql = "UPDATE Clients SET poblacio = 'Castelldefells' WHERE id_client=101;";
     $rows = $pdo->exec($sql);
     print "<br>-------ROWS AFFECTEDS : $rows --------------<br>";
 
@@ -78,7 +78,7 @@ try {
         print "<br>------- NOT FOUND ANY ROWS --------------<br><br>";
     }
 
-    $sql = "DELETE FROM clients WHERE id_client=101;";
+    $sql = "DELETE FROM Clients WHERE id_client=101;";
     $rows = $pdo->exec($sql);
     print "<br>-------ROWS AFFECTEDS : $rows --------------<br>";
 
@@ -98,10 +98,10 @@ try {
 
 
     $sqlTest = "SELECT id_client, nom, cognom, email, provincia, poblacio "
-            . "FROM clients WHERE id_client = :id";
+            . "FROM Clients WHERE id_client = :id";
     $id = 102;
 
-    $sql = "INSERT INTO clients VALUES
+    $sql = "INSERT INTO Clients VALUES
             (:id,:nom,:cognom,:email,:prov,:pob);";
     $stmt = $pdo->prepare($sql);
     $result = $stmt->execute([
@@ -134,7 +134,7 @@ try {
         print "<br>------- NOT FOUND ANY ROWS --------------<br><br>";
     }
 
-    $sql = "UPDATE clients SET poblacio = :pob WHERE id_client=:id;";
+    $sql = "UPDATE Clients SET poblacio = :pob WHERE id_client=:id;";
     $stmt = $pdo->prepare($sql);
     $result = $stmt->execute([
         ':id' => $id,
@@ -162,7 +162,7 @@ try {
         print "<br>------- NOT FOUND ANY ROWS --------------<br><br>";
     }
 
-    $sql = "DELETE FROM clients WHERE id_client=:id;";
+    $sql = "DELETE FROM Clients WHERE id_client=:id;";
     $stmt = $pdo->prepare($sql);
     $result = $stmt->execute([':id' => $id]);
 

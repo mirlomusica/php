@@ -7,7 +7,7 @@ class PdoAdapter {
     protected PDO $pdo;
     protected PDOStatement $stmt;
     protected string $host = 'localhost';
-    protected string $db = 'infobooks';
+    protected string $db = 'infolib';
     protected string $charset = 'utf8mb4';
     protected string $user = 'daw1';
     protected string $pass = 'M0485phpdaw@';

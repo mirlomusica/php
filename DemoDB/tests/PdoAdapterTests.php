@@ -35,14 +35,14 @@ try {
     $pdo = new PdoAdapter();
     print "Conexión correcta";
     print "<br>-----------------------------------<br><br>";
-    $sql = "SELECT id_client, nom, cognom, email, provincia, poblacio FROM clients";
+    $sql = "SELECT id_client, nom, cognom, email, provincia, poblacio FROM Clients";
     $rows = $pdo->read($sql);
     showRows($rows);
 
     $sqlTest = "SELECT id_client, nom, cognom, email, provincia, poblacio "
-            . "FROM clients WHERE id_client = 101";
+            . "FROM Clients WHERE id_client = 101";
 
-    $sql = "INSERT INTO clients VALUES
+    $sql = "INSERT INTO Clients VALUES
             (101,'Felix','Del Val','felixdv@example.com','Barcelona','Gava');";
     $rows = $pdo->write($sql);
     print "<br>-------ROWS AFFECTEDS : $rows --------------<br>";
@@ -50,14 +50,14 @@ try {
     $rows = $pdo->read($sqlTest);
     showRows($rows);
 
-    $sql = "UPDATE clients SET poblacio = 'Castelldefells' WHERE id_client=101;";
+    $sql = "UPDATE Clients SET poblacio = 'Castelldefells' WHERE id_client=101;";
     $rows = $pdo->write($sql);
     print "<br>-------ROWS AFFECTEDS : $rows --------------<br>";
 
     $rows = $pdo->read($sqlTest);
     showRows($rows);
 
-    $sql = "DELETE FROM clients WHERE id_client=101;";
+    $sql = "DELETE FROM Clients WHERE id_client=101;";
     $rows = $pdo->write($sql);
     print "<br>-------ROWS AFFECTEDS : $rows --------------<br>";
 
@@ -66,9 +66,9 @@ try {
 
 
     $sqlTest = "SELECT id_client, nom, cognom, email, provincia, poblacio "
-            . "FROM clients WHERE id_client = :id";
+            . "FROM Clients WHERE id_client = :id";
     $id = 102;
-    $sql = "INSERT INTO clients VALUES (:id,:nom,:cognom,:email,:prov,:pob);";
+    $sql = "INSERT INTO Clients VALUES (:id,:nom,:cognom,:email,:prov,:pob);";
     $pdo->prepareStmt($sql);
     $result = $pdo->execWriteStmt([
         ':id' => $id,
@@ -84,7 +84,7 @@ try {
     $rows = $pdo->execReadStmt([':id' => $id]);
     showRows($rows);
 
-    $sql = "UPDATE clients SET poblacio = :pob WHERE id_client=:id;";
+    $sql = "UPDATE Clients SET poblacio = :pob WHERE id_client=:id;";
     $pdo->prepareStmt($sql);
     $result = $pdo->execWriteStmt([
         ':id' => $id,
@@ -96,7 +96,7 @@ try {
     $rows = $pdo->execReadStmt([':id' => $id]);
     showRows($rows);
 
-    $sql = "DELETE FROM clients WHERE id_client=:id;";
+    $sql = "DELETE FROM Clients WHERE id_client=:id;";
     $pdo->prepareStmt($sql);
     $result = $pdo->execWriteStmt([':id' => $id]);
     showResult($result);

@@ -17,7 +17,7 @@ class Client extends Person
         string $cognom,
         int $clientId
     ) {
-        parent::__construct($ident,$name, $email, $provincia, $poblacio);
+        $this->checkParameters($ident,$name, $email, $provincia, $poblacio);
         $this->cognom = $cognom;
         $this->clientId = $clientId;
     }
