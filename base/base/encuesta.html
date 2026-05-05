@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+    </head>
+    <body>
+    
+        <form>
+            <select name="encuestas" id="encuestas">
+            </select>
+            <button type="">muestra encuesta</button>
+            
+            <script>
+                let enc = document.getElementById("encuestas");
+                fetch("encuestas.php")
+                    .then(resp=>resp.json())
+                    .then(data=>{
+                        console.log(data);
+                        data.forEach((encuesta)=>{
+                            let opt = document.createElement("option");
+                            
+                            opt.innerHTML = encuesta.textoEncuesta;
+                            opt.value = encuesta.codigo;
+                            enc.appendChild(opt);
+
+                        })
+                    })
+            </script>
+        </form>
+    </body>
+</html>
