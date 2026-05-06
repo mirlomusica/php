@@ -6,6 +6,22 @@ include_once __DIR__ . "/PdoAdapter.php";
 
 class ClientPersistence extends PdoAdapter
 {
+    private function rowsToClients(array $rows): array
+    {
+        $arrayClients = [];
+        foreach ($rows as $data) {
+            $arrayClients[] = new Client(
+                $data["id_client"],
+                $data["nom"],
+                $data["email"],
+                $data["cognom"],
+                $data["provincia"],
+                $data["poblacio"]
+            );
+        }
+        return $arrayClients;
+    }
+
     public function getAll(): array
     {
         $arrayClients = [];
@@ -109,18 +125,70 @@ class ClientPersistence extends PdoAdapter
             throw new ServiceException("No clients of Provincia $province");
         }
 
+        return $this->rowsToClients($rows);
 
-        $arrayClients = [];
-        foreach ($rows as $data) {
-            $arrayClients[] = new Client(
-                $data["id_client"],
-                $data["nom"],
-                $data["email"],
-                $data["cognom"],
-                $data["provincia"],
-                $data["poblacio"]
-            );
+    }
+
+    public function findByName(string $name)
+    {
+        try {
+            $this->prepareStmt("SELECT * FROM Clients WHERE nom=:name");
+            $rows = $this->execReadStmt([":name" => $name]);
+        } catch (PDOException $ex) {
+            throw new ServiceException("Error al buscar per nom: ".$ex->getMessage());
         }
-        return $arrayClients;
+
+        if (!$rows) {
+            throw new ServiceException("Cap client amb nom $name");
+        }
+
+        return $this->rowsToClients($rows);
+
+
+    }
+
+    public function findByNameAndSurname(string $name, string $surname)
+    {
+        try {
+            $this->prepareStmt("SELECT * FROM Clients WHERE nom=:name AND cognom=:surname");
+            $rows = $this->execReadStmt([":name" => $name, ":surname" => $surname]);
+        } catch (PDOException $ex) {
+            throw new ServiceException("Error al buscar per nom i cognon: ".$ex->getMessage());
+        }
+
+        if (!$rows) {
+            throw new ServiceException("Cap client amb nom $name i cognom $surname");
+        }
+
+        return $this->rowsToClients($rows);
+
+
+    }
+    public function findByCites(array $cities): array
+    {
+        $cityQuery ="";
+        foreach($cities as $city){
+            if($cityQuery != ""){
+                $cityQuery .= ", ";
+            }
+
+            $cityQuery .="'".$city."'";
+
+        }
+        try {
+            $rows = $this->read("SELECT * FROM Clients WHERE poblacio IN ( ".$cityQuery .")");
+        } catch (PDOException $ex) {
+            throw new ServiceException("Error al buscar per nom: ".$ex->getMessage());
+        }
+
+
+        if (!$rows) {
+            throw new ServiceException("Cap client de les següents ciutats: $cityQuery");
+        }
+
+
+        return $this->rowsToClients($rows);
+
+
     }
 }
