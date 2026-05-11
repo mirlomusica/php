@@ -1,33 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title></title>
-    </head>
-    <body>
-    
-        <form>
-            <select name="encuestas" id="encuestas">
-            </select>
-            <button type="">muestra encuesta</button>
-            
-            <script>
-                let enc = document.getElementById("encuestas");
-                fetch("encuestas.php")
-                    .then(resp=>resp.json())
-                    .then(data=>{
-                        console.log(data);
-                        data.forEach((encuesta)=>{
-                            let opt = document.createElement("option");
-                            
-                            opt.innerHTML = encuesta.textoEncuesta;
-                            opt.value = encuesta.codigo;
-                            enc.appendChild(opt);
 
-                        })
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+</head>
+
+<body>
+
+    <form id="selector" action="">
+        <select name="encuestas" id="encuestas">
+        </select>
+        <button type="">muestra encuesta</button>
+        <div id="mostrar">
+
+        </div>
+        <script>
+            let enc = document.getElementById("encuestas");
+            let selectedEnc = document.createElement("form");
+            fetch("encuestas.php")
+                .then(resp => resp.json())
+                .then(data => {
+                    console.log(data);
+                    data.forEach((encuesta) => {
+                        let opt = document.createElement("option");
+
+                        opt.innerHTML = encuesta.textoEncuesta;
+                        opt.value = encuesta.codigo;
+                        enc.appendChild(opt);
+
                     })
-            </script>
-        </form>
-    </body>
+                })
+            let selector = document.getElementById("selector");
+            selector.addEventListener("submit", (e) => {
+                e.preventDefault();
+                console.log(enc.value)
+                data = new FormData();
+                data.append("id", enc.value)
+                fetch("encuesta_controller.php", {
+                    body: data,
+                    method: "POST"
+                })
+                    .then(resp => resp.json())
+                    .then(encuesta => {
+                        let selectedEnc = document.createElement("form");
+
+                        title = document.createElement("h2")
+                        title.innerHTML = encuesta[0].textoEncuesta;
+                        selectedEnc.appendChild(title)
+                        //encuesta 1
+                        radio1 = document.createElement("input");
+                        radio1.type = "radio"
+                        radio1.name = "opcion";
+                        radio1.value = 1
+                        label = document.createElement("label");
+                        label.innerHTML = encuesta[0].opcion1;
+                        selectedEnc.appendChild(label);
+                        selectedEnc.appendChild(radio1);
+
+                        //encuesta 2
+                        radio2 = document.createElement("input");
+                        radio2.type = "radio"
+                        radio2.name = "opcion";
+                        radio2.value = 2
+                        label = document.createElement("label");
+                        label.innerHTML = encuesta[0].opcion2;
+                        selectedEnc.appendChild(label);
+                        selectedEnc.appendChild(radio2);
+
+                        //encuesta 3
+                        radio3 = document.createElement("input");
+                        radio3.type = "radio"
+                        radio3.name = "opcion";
+                        radio3.value = 3
+                        label = document.createElement("label");
+                        label.innerHTML = encuesta[0].opcion3;
+                        selectedEnc.appendChild(label);
+                        selectedEnc.appendChild(radio3);
+
+
+                        let id = document.createElement("input");
+                        id.type = "hidden"
+                        id.name = "id";
+                        id.value = encuesta[0].codigo;
+                        selectedEnc.appendChild(id)
+
+                        let submit = document.createElement("input");
+                        submit.type = "submit"
+                        selectedEnc.appendChild(submit)
+
+
+                        let mostrar = document.getElementById("mostrar");
+                        mostrar.appendChild(selectedEnc);
+
+                        selectedEnc.addEventListener("submit", (e) => {
+                            e.preventDefault();
+                            fetch("update_enc.php", {
+                                body: new FormData(selectedEnc),
+                                method: "POST"
+                            })
+                                .then(resp => resp.text())
+                                .then(result => {
+                                    console.log(result);
+                                })
+                        })
+
+                    })
+
+            })
+
+
+
+        </script>
+    </form>
+</body>
+
 </html>
