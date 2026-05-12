@@ -1,0 +1,62 @@
+<?php
+
+include_once __DIR__."/../model/products/Book.php";
+include_once __DIR__."/../persistence/BookPersistence.php";
+
+function booksToAssoc($books)
+{
+    $res = [];
+    foreach ($books as $book) {
+        $row = [];
+        $row["id_llibre"] = $book->getId_llibre();
+        $row["titol"] = $book->getTitol();
+        $row["autor"] = $book->getAutor();
+        $row["tema"] = $book->getTema();
+        $row["any_publicacio"] = $book->getAny_publicacio();
+        $row["preu"] = $book->getPreu();
+        $res[] = $row;
+
+
+    }
+    return $res;
+
+}
+
+$field = filter_input(INPUT_POST, "field");
+$value = filter_input(INPUT_POST, "value");
+
+function showRows($rows)
+{
+    foreach ($rows as $book) {
+        print $book->__toString();
+        print "------------------------------";
+    }
+}
+
+
+if (!$field || !$value) {
+    print "rellena el formulario";
+    die();
+}
+
+$persistence = new BookPersistence();
+
+switch ($field) {
+    case "id_llibre":
+
+        try {
+            $result = $persistence->findById($value);
+            echo json_encode(booksToAssoc($result));
+        } catch (ServiceException $ex) {
+            print "Error de cerca:".$ex->getMessage();
+        }
+        break;
+    case "title":
+        try {
+            $result = $persistence->findByTitle($value);
+            echo json_encode(booksToAssoc($result));
+        } catch (ServiceException $ex) {
+            print "Error de cerca:".$ex->getMessage();
+        }
+        break;
+}

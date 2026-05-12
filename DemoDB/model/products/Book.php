@@ -75,6 +75,16 @@ class Book {
         $this->preu = $preu;
     }
 
+    public function __toString(): string
+    {
+        return "id_llibre: ". $this->getId_llibre()."<br>"
+            . "titol". $this->getTitol()."<br>"
+        ."autor: ". $this->getAutor()."<br>"
+            ."tema: ". $this->getTema()."<br>"
+            ."any_publicacio: ".$this->getAny_publicacio()."<br>"
+        ."preu: ".$this->getPreu()."<br>";
+    }
+
 
 
 }

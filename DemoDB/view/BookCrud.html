@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="formulario">
+
+        <form method="POST" action="../controller/BookCrudController.php">
+
+            <label name="id_llibre">id_llibre</label>
+            <input type="text" name="id_llibre" value="">
+            <label name="titol">titol</label>
+            <input type="text" name="titol" value="">
+            <label name="autor">autor</label>
+            <input type="text" name="autor" value="">
+            <label name="tema">tema</label>
+            <input type="text" name="tema" value="">
+            <label name="any_publicacio">any_publicacio</label>
+            <input type="number" name="any_publicacio" value="">
+            <label name="preu">preu</label>
+            <input type="decimal" name="preu" value="">
+
+            <input type="submit" name="action" value="Create">
+            <input type="submit" name="action" value="Update">
+            <input type="submit" name="action" value="Delete">
+        </form>
+    </div>
+
+</body>
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+</html>

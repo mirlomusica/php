@@ -5,6 +5,8 @@ include_once __DIR__."/../model/products/Book.php";
 include_once __DIR__."/../persistence/BookPersistence.php";
 
 
+
+
 $id_llibre = 1;
 $titol = "Jaume";
 $autor = "Jaume";
@@ -14,7 +16,7 @@ $preu = 20.00;
 
 try {
     $book = new Book($id_llibre, $titol, $autor, $tema, $any_publicacio, $preu);
-    print "Objecte Creat Correctament";
+    print "Objecte Creat Correctament<br>";
 
 } catch (Exception $ex) {
     print "Error Creant Book object<br>";
@@ -24,4 +26,3 @@ $p = new BookPersistence();
 
 $title = ".NET";
 $return = $p->findByTitle($title);
-var_dump($return);
