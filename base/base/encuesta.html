@@ -14,7 +14,18 @@
         </select>
         <button type="">muestra encuesta</button>
         <div id="mostrar">
-
+        </div>
+        <div id="graph">
+                <div id= "bar1" class="bar">
+                    
+                </div>
+                <div id= "bar2" class="bar">
+                    
+                </div>
+                <div id= "bar3" class="bar">
+                    
+                </div>
+            
         </div>
         <script>
             let enc = document.getElementById("encuestas");
@@ -44,10 +55,11 @@
                 })
                     .then(resp => resp.json())
                     .then(encuesta => {
-                        let selectedEnc = document.createElement("form");
+                        console.log(encuesta)
+                        selectedEnc.innerHTML = "";
 
                         title = document.createElement("h2")
-                        title.innerHTML = encuesta[0].textoEncuesta;
+                        title.innerHTML = encuesta.textoEncuesta;
                         selectedEnc.appendChild(title)
                         //encuesta 1
                         radio1 = document.createElement("input");
@@ -55,7 +67,7 @@
                         radio1.name = "opcion";
                         radio1.value = 1
                         label = document.createElement("label");
-                        label.innerHTML = encuesta[0].opcion1;
+                        label.innerHTML = encuesta.opcion1;
                         selectedEnc.appendChild(label);
                         selectedEnc.appendChild(radio1);
 
@@ -65,7 +77,7 @@
                         radio2.name = "opcion";
                         radio2.value = 2
                         label = document.createElement("label");
-                        label.innerHTML = encuesta[0].opcion2;
+                        label.innerHTML = encuesta.opcion2;
                         selectedEnc.appendChild(label);
                         selectedEnc.appendChild(radio2);
 
@@ -75,7 +87,7 @@
                         radio3.name = "opcion";
                         radio3.value = 3
                         label = document.createElement("label");
-                        label.innerHTML = encuesta[0].opcion3;
+                        label.innerHTML = encuesta.opcion3;
                         selectedEnc.appendChild(label);
                         selectedEnc.appendChild(radio3);
 
@@ -83,7 +95,7 @@
                         let id = document.createElement("input");
                         id.type = "hidden"
                         id.name = "id";
-                        id.value = encuesta[0].codigo;
+                        id.value = encuesta.codigo;
                         selectedEnc.appendChild(id)
 
                         let submit = document.createElement("input");
@@ -100,9 +112,26 @@
                                 body: new FormData(selectedEnc),
                                 method: "POST"
                             })
-                                .then(resp => resp.text())
+                                .then(resp => resp.json())
                                 .then(result => {
                                     console.log(result);
+                                    let bar1 = document.getElementById("bar1");
+                                    let bar2 = document.getElementById("bar2");
+                                    let bar3 = document.getElementById("bar3");
+
+                                    total = result.pregunta1 + result.pregunta2 + result.pregunta3;
+
+                                    bar1.style.height = (result.pregunta1/total)*30 + "vh";
+                                    bar1.innerHTML = result.opcion1
+                                    
+                                    bar2.style.height = (result.pregunta2/total)*30 + "vh";
+                                    bar2.innerHTML = result.opcion2
+
+                                    bar3.style.height = (result.pregunta3/total)*30 + "vh";
+                                    bar3.innerHTML = result.opcion3
+
+            
+                                    
                                 })
                         })
 
@@ -115,5 +144,21 @@
         </script>
     </form>
 </body>
+    <style>
+        #graph{
+            padding: 1vh;
+            width: 40vw;
+            height: 30vh;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .bar{
+            width: 10vw;
+            height: 100%;
+            background-color: red;
+        }
+    
+    </style>
 
 </html>
