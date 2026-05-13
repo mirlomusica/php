@@ -9,29 +9,60 @@
 
 <body>
 
-    <form id="form" method="POST" action="">
+    <form id="finder" method="POST" action="">
 
         <label for="field">Campo</label>
-        <select name="field">
-            <option value="title">title</option>
+        <select id="fieldSelect" name="field">
+            <option value="title">titol</option>
             <option value="id_llibre">id_llibre</option>
+            <option value="any_publicacio">Any de Publicació</option>
+            <option value="tema">Tema</option>
+            <option value="temes">Temes</option>
         </select>
-        <label for="value">Valor</label>
-        <input type="text" name="value" value="">
+        <div id="fields">
+            <label for="value">Valor</label>
+            <input type="text" name="value" value="">
+        </div>
+        <button type="" id="extraFieldButton" hidden>Més camps</button>
         <input type="submit" name="submit" value="find">
 
+        <div id="crudContainer">
+
+        </div>
+
     </form>
-        <script src="BookFinder.js">
-            
-        </script>
+    <script src="BookFinder.js">
+
+    </script>
 
 </body>
 <style>
-    form {
+    body {
+        background-color: #feedc3;
+    }
+
+    #finder {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+
+    .bookForm {
+        display: flex;
+        flex-direction: row;
+        background-color: wheat;
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .crudElement {
+        background-color: RGB(191, 153, 103);
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 10px;
     }
 </style>
 

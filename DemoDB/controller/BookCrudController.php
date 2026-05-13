@@ -24,6 +24,7 @@ switch ($action) {
             $book = new Book($id_llibre, $titol, $autor, $tema, $any_publicacio, $preu);
         } catch (BuildException $ex) {
             print "Error creant llibre".$ex->getMessage();
+            die();
         }
 
         try {
@@ -31,6 +32,7 @@ switch ($action) {
             print "llibre insertat";
         } catch (ServiceException $ex) {
             print "Error insertant llibre a la DB". $ex->getMessage();
+            die();
         }
         break;
 

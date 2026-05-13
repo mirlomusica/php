@@ -45,6 +45,13 @@ class BookPersistence extends PdoAdapter
     public function updateBook(Book $book)
     {
         try {
+            $this->prepareStmt("SELECT * From Llibres WHERE id_llibre=:id_llibre");
+            $rows = $this->execReadStmt([
+                ":id_llibre" => $book->getId_llibre()]);
+
+            if (!$rows) {
+                throw new ServiceException("llibre amb id ".$book->getId_llibre()." no trobat");
+            }
             $this->prepareStmt(
                 "UPDATE Llibres
                 SET  titol=:titol, autor=:autor, tema=:tema, any_publicacio=:any_publicacio, preu=:preu
@@ -61,6 +68,7 @@ class BookPersistence extends PdoAdapter
 
             ]);
 
+
         } catch (PDOException $ex) {
             throw new ServiceException("Error al actualitzar Llibre". $ex->getMessage());
         }
@@ -72,7 +80,7 @@ class BookPersistence extends PdoAdapter
         try {
             $this->prepareStmt("DELETE  FROM Llibres WHERE id_llibre=:id_llibre");
 
-            $this->execWriteStmt([ ":id_llibre" =>$id_llibre]);
+            $this->execWriteStmt([ ":id_llibre" => $id_llibre]);
 
         } catch (PDOException $ex) {
             throw new ServiceException("Error al esborrar Llibre". $ex->getMessage());
@@ -108,6 +116,66 @@ class BookPersistence extends PdoAdapter
         }
 
         return $this->rowsToBooks($rows);
+    }
+
+    public function findByYear($year)
+    {
+
+        try {
+            $this->prepareStmt("SELECT * FROM Llibres where any_publicacio=:year");
+            $rows = $this->execReadStmt([":year" => $year]);
+        } catch (PDOException $ex) {
+            throw new ServiceException("Consulta per any fallida:". $ex->getMessage());
+        }
+        if (!$rows) {
+            throw new ServiceException("cap llibre amb any de Publicació $year");
+        }
+
+        return $this->rowsToBooks($rows);
+    }
+
+    public function findByTheme($theme)
+    {
+
+        try {
+            $this->prepareStmt("SELECT * FROM Llibres where tema=:theme");
+            $rows = $this->execReadStmt([":theme" => $theme]);
+        } catch (PDOException $ex) {
+            throw new ServiceException("Consulta per any fallida:". $ex->getMessage());
+        }
+        if (!$rows) {
+            throw new ServiceException("cap llibre amb tema $theme");
+        }
+
+        return $this->rowsToBooks($rows);
+    }
+
+    public function findByThemes(array $themes): array
+    {
+        $themeQuery = "";
+        foreach ($themes as $theme) {
+            if ($themeQuery != "") {
+                $themeQuery .= ",";
+            }
+
+            $themeQuery .= "'".$theme."'";
+
+        }
+        try {
+            $rows = $this->read("SELECT * FROM Llibres WHERE tema IN ( ".$themeQuery .")");
+        } catch (PDOException $ex) {
+            throw new ServiceException("Error al buscar per temes: ".$ex->getMessage());
+        }
+
+
+        if (!$rows) {
+            throw new ServiceException("Cap llibre amb els seguents temes: $themeQuery");
+        }
+
+
+        return $this->rowsToBooks($rows);
+
+
     }
 
 }

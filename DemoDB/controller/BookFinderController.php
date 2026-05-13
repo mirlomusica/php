@@ -25,14 +25,6 @@ function booksToAssoc($books)
 $field = filter_input(INPUT_POST, "field");
 $value = filter_input(INPUT_POST, "value");
 
-function showRows($rows)
-{
-    foreach ($rows as $book) {
-        print $book->__toString();
-        print "------------------------------";
-    }
-}
-
 
 if (!$field || !$value) {
     print "rellena el formulario";
@@ -48,7 +40,7 @@ switch ($field) {
             $result = $persistence->findById($value);
             echo json_encode(booksToAssoc($result));
         } catch (ServiceException $ex) {
-            print "Error de cerca:".$ex->getMessage();
+            print json_encode(["error"=>"Error de cerca:".$ex->getMessage()]);
         }
         break;
     case "title":
@@ -56,7 +48,41 @@ switch ($field) {
             $result = $persistence->findByTitle($value);
             echo json_encode(booksToAssoc($result));
         } catch (ServiceException $ex) {
-            print "Error de cerca:".$ex->getMessage();
+            print json_encode(["error"=>"Error de cerca:".$ex->getMessage()]);
+        }
+        break;
+
+    case "any_publicacio":
+        try {
+            $result = $persistence->findByYear($value);
+            echo json_encode(booksToAssoc($result));
+        } catch (ServiceException $ex) {
+            print json_encode(["error"=>"Error de cerca:".$ex->getMessage()]);
+        }
+        break;
+
+    case "tema":
+        try {
+            $result = $persistence->findByTheme($value);
+            echo json_encode(booksToAssoc($result));
+        } catch (ServiceException $ex) {
+            print json_encode(["error"=>"Error de cerca:".$ex->getMessage()]);
+        }
+        break;
+
+    case "temes":
+        try {
+            $value = explode(",",$value);
+            $formatted = [];
+            foreach($value as $theme){
+                $formatted [] = trim($theme);
+            }
+            
+
+            $result = $persistence->findByThemes($formatted);
+            echo json_encode(booksToAssoc($result));
+        } catch (ServiceException $ex) {
+            print json_encode(["error"=>"Error de cerca:".$ex->getMessage()]);
         }
         break;
 }
