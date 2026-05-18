@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <table id="pizzas">
+        <tr>
+            <th>id</th>
+            <th>nom</th>
+            <th>precio</th>
+            <th>img</th>
+        </tr>
+
+    </table>
+    <div id="mostrar">
+        <img id="imgPizza" src="" alt="" hidden>
+
+    </div>
+
+    <script>
+
+        function showimg(url) {
+            let mostrar = document.getElementById("mostrar");
+            let img = document.getElementById("imgPizza");
+            img.hidden = false;
+            img.src = url;
+            mostrar.appendChild(img);
+
+        }
+
+        async function chargePage() {
+            let pizzas = document.getElementById("pizzas");
+            resp = await fetch("pizzas.php");
+            data = await resp.json();
+
+            data.forEach((row) => {
+                console.log(row.id_pizza)
+                pizzas.innerHTML += `
+                    <tr>
+                        <td>${row.id_pizza}</td>
+                        <td>${row.nom_pizza}</td>
+                        <td>${row.precio}</td>
+                        <td><button onclick="showimg('${row.imagen}')">Veure Pizza</button></td>
+                    </tr>`
+            })
+
+        }
+        chargePage();
+
+    </script>
+
+</body>
+
+</html>
+
+
