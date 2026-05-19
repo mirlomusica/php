@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+</head>
+
+<body>
+
+
+    <form id="finder" method="POST" action="../controller/BookCookieController.php">
+
+        <label for="field">Campo</label>
+        <select id="fieldSelect" name="field">
+            <option value="title">titol</option>
+            <option value="id_llibre">id_llibre</option>
+            <option value="any_publicacio">Any de Publicació</option>
+            <option value="tema">Tema</option>
+            <option value="temes">Temes</option>
+        </select>
+        <div id="fields">
+            <label for="value">Valor</label>
+            <input type="text" name="value" value="">
+        </div>
+        <input type="submit" name="submit" value="find">
+
+        <div id="crudContainer">
+
+        </div>
+
+    </form>
+
+
+</body>
+
+</html>
