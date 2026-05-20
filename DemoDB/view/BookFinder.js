@@ -106,7 +106,7 @@ let fieldCount = 1;
 //
 //     }
 // })
-
+//
 // extraFieldButton.addEventListener("click", () => {
 //     fieldCount++;
 //     let fields = document.getElementById("fields");

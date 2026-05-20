@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+    </head>
+    <body>
+        <form id="form" method="POST" action="../controller/ClientFinderController.php">
+            <select id="field" name="field">
+                <option value="">Selecciona mètode de cerca</option>
+                <option value="nom">Nom</option>
+                <option value="provincia">Provincia</option>
+                <option value="nomCognom">Nom i Cognom</option>
+                <option value="ciutats">Ciutats</option>
+            </select>
+
+            <label id="val1Label"for="value1">Valor:</label>
+            <input id="value1" type="text" name="value1" value="">
+
+            <label id="val2Label"for="value2" hidden>cognom:</label>
+            <input id="value2" type="text" name="value2" value="" hidden>
+
+            <input type="submit" name="submit" value="submit">
+        </form>
+
+            
+        <script src="ClientFinder.js"></script>
+    
+    </body>
+    <style>
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-self:center;
+    }
+    
+    </style>
+</html>

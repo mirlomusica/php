@@ -93,8 +93,7 @@ class ClientPersistence extends PdoAdapter
     {
         try {
             $this->prepareStmt("UPDATE Clients "
-                    . "SET nom = :nom, cognom = :cognom, "
-                    . "email = :email, provincia = :prov, poblacio = :pob "
+                    . "SET nom = :nom, cognom = :cognom, email = :email, provincia = :prov, poblacio = :pob "
                     . "WHERE id_client=:id;");
 
             return $this->execWriteStmt(
